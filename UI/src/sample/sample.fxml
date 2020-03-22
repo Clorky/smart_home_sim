@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <HBox prefHeight="200.0" prefWidth="1024.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="200.0" prefWidth="512.0">
+               <children>
+                  <JFXButton alignment="CENTER" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:C:/Git_projects/SHS/Smart-Home-Simulation/images/mistnosti_main_text.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="200.0" prefWidth="512.0">
+               <children>
+                  <JFXButton text=" ">
+                     <graphic>
+                        <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:C:/Git_projects/SHS/Smart-Home-Simulation/images/statistiky_main_text.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="512.0">
+               <children>
+                  <JFXSlider blockIncrement="1.0" max="27.0" min="16.0" prefHeight="15.0" prefWidth="230.0" showTickLabels="true" value="21.5">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXSlider>
+                  <Label text="Požadovaná globální teplota">
+                     <VBox.margin>
+                        <Insets left="120.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox prefWidth="512.0">
+                     <children>
+                        <HBox prefWidth="256.0">
+                           <children>
+                              <Label text="temp_C">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="50.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="256.0">
+                           <children>
+                              <Label prefHeight="81.0" prefWidth="256.0" text="Bylo nutno zapnout &#10;vytápění %dny za poslední rok.&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
