@@ -21,7 +21,7 @@
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="file:C:/Git_projects/SHS/Smart-Home-Simulation/images/mistnosti_main_text.png" />
+                              <Image url="file:.\images/mistnosti_main_text.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -34,7 +34,7 @@
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="file:C:/Git_projects/SHS/Smart-Home-Simulation/images/statistiky_main_text.png" />
+                              <Image url="file:./images/statistiky_main_text.png" />
                            </image>
                         </ImageView>
                      </graphic>

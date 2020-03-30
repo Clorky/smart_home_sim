@@ -1,37 +1,29 @@
 package com.company.sensorsAPI;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity // This tells Hibernate to make a table out of this class
 public class Sensor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String name;
 
-    public Sensor() {
+    private Integer roomId;
+    private double temperature;
+    private double currentConsumption;
+    private double lightsOnNumberInHours;
+
+    public Sensor(Integer roomId) {
+        this.roomId = roomId;
     }
 
-    public Sensor(String name) {
-        this.name = name;
+    public Integer getRoomId() {
+        return roomId;
     }
 
-    public Integer getId() {
-        return id;
+    public double getTemperature() {
+        return temperature;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public double getCurrentConsumption() {
+        return currentConsumption;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public double getLightsOnNumberInHours() {
+        return lightsOnNumberInHours;
     }
 }

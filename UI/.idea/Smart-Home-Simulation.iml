@@ -7,29 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/images" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
     </content>
-    <orderEntry type="jdk" jdkName="11.0.6" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/jfoenix-9.0.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$PATH_TO_FX$" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$PATH_TO_FX$" />
-        </SOURCES>
-        <jarDirectory url="file://$PATH_TO_FX$" recursive="false" />
-        <jarDirectory url="file://$PATH_TO_FX$" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jfoenix-9.0.8" level="project" />
   </component>
 </module>

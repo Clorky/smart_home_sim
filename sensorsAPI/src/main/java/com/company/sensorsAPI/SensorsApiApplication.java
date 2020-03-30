@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SensorsApiApplication {
 
     public static void main(String[] args) {
+        new Thread(new SensorSimulation()).start();
         SpringApplication.run(SensorsApiApplication.class, args);
     }
 
