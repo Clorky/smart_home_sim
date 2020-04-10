@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="088ab251-dc08-4588-8b1b-9f1174853576" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Smart-Home-Simulation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Smart-Home-Simulation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Smart-Home-Simulation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/Sensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +50,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sensorsAPI" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -67,7 +61,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="Smart-Home-Simulation" />
+      <module name="application" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Honza\Downloads\javaDependencies\javafx-sdk-11.0.2\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
@@ -102,6 +96,8 @@
       <workItem from="1585478762406" duration="216000" />
       <workItem from="1585479076180" duration="1513000" />
       <workItem from="1585559180618" duration="922000" />
+      <workItem from="1585934857201" duration="203000" />
+      <workItem from="1586472037451" duration="6456000" />
     </task>
     <task id="LOCAL-00001" summary="nothing important">
       <created>1584874098799</created>
@@ -146,33 +142,37 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="230" width="477" height="578" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585475006728" />
-    <state x="697" y="259" key="FileChooserDialogImpl" timestamp="1585559499658">
+    <state x="697" y="259" key="FileChooserDialogImpl" timestamp="1585935046678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="697" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585559499658" />
-    <state width="1877" height="164" key="GridCell.Tab.0.bottom" timestamp="1585564756355">
+    <state x="697" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585935046678" />
+    <state width="1877" height="164" key="GridCell.Tab.0.bottom" timestamp="1586478499444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585564756355" />
-    <state width="1877" height="164" key="GridCell.Tab.0.center" timestamp="1585564756354">
+    <state width="1877" height="164" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
+    <state width="1877" height="164" key="GridCell.Tab.0.center" timestamp="1586478499444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585564756354" />
-    <state width="1877" height="164" key="GridCell.Tab.0.left" timestamp="1585564756354">
+    <state width="1877" height="164" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
+    <state width="1877" height="164" key="GridCell.Tab.0.left" timestamp="1586478499444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585564756354" />
-    <state width="1877" height="164" key="GridCell.Tab.0.right" timestamp="1585564756354">
+    <state width="1877" height="164" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
+    <state width="1877" height="164" key="GridCell.Tab.0.right" timestamp="1586478499444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585564756354" />
+    <state width="1877" height="164" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1585479911608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585479911608" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585559179614">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585934994250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585559179614" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585934994250" />
+    <state x="342" y="140" key="new project wizard" timestamp="1585935058122">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1585935058122" />
   </component>
 </project>
