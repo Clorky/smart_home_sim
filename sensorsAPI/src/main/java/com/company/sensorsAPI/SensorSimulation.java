@@ -13,8 +13,6 @@ public class SensorSimulation implements Runnable{
     @Override
     public void run() {
 
-
-
         while(true){
 
             if(!sensors.isEmpty()) System.out.println(sensors.get(0).getRoomId());

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="088ab251-dc08-4588-8b1b-9f1174853576" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Smart-Home-Simulation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +18,13 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -47,6 +53,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -98,6 +105,7 @@
       <workItem from="1585559180618" duration="922000" />
       <workItem from="1585934857201" duration="203000" />
       <workItem from="1586472037451" duration="6456000" />
+      <workItem from="1586561564080" duration="3983000" />
     </task>
     <task id="LOCAL-00001" summary="nothing important">
       <created>1584874098799</created>
@@ -146,22 +154,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="697" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585935046678" />
-    <state width="1877" height="164" key="GridCell.Tab.0.bottom" timestamp="1586478499444">
+    <state width="1877" height="159" key="GridCell.Tab.0.bottom" timestamp="1586565551197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
-    <state width="1877" height="164" key="GridCell.Tab.0.center" timestamp="1586478499444">
+    <state width="1877" height="159" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
+    <state width="1877" height="159" key="GridCell.Tab.0.center" timestamp="1586565551197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
-    <state width="1877" height="164" key="GridCell.Tab.0.left" timestamp="1586478499444">
+    <state width="1877" height="159" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
+    <state width="1877" height="159" key="GridCell.Tab.0.left" timestamp="1586565551197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
-    <state width="1877" height="164" key="GridCell.Tab.0.right" timestamp="1586478499444">
+    <state width="1877" height="159" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
+    <state width="1877" height="159" key="GridCell.Tab.0.right" timestamp="1586565551197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="164" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586478499444" />
+    <state width="1877" height="159" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1585479911608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

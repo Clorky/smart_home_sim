@@ -1,6 +1,7 @@
 package sample;
 
 import com.jfoenix.controls.JFXSlider;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,8 +23,6 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class Controller {
-
-
 
     public void changeScreenKitchen(ActionEvent evt) throws IOException {
         Parent kitchenViewParent = FXMLLoader.load(getClass().getResource("KitchenWindow.fxml"));
@@ -59,11 +60,21 @@ public class Controller {
         window.setScene(bedroomView);
         window.show();
     }
+
+    public void changeScreenRooms(ActionEvent evt) throws IOException {
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("mistnosti.fxml"));
+        Scene roomsView = new Scene(roomsViewParent);
+
+        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+
+        window.setScene(roomsView);
+        window.show();
+    }
     @FXML
     private JFXSlider slider;
     @FXML
     private void initialize(){
-        temp_c.setText(new DecimalFormat("#.00").format(slider.getValue()));
+        temp_c.setText(new DecimalFormat("#.00").format(slider.getValue()) + " C");
     }
 
     @FXML
@@ -72,6 +83,6 @@ public class Controller {
     @FXML
     private void increment() {
         String text = String.valueOf(new DecimalFormat("#.00").format(slider.getValue()));
-        temp_c.setText(text);
+        temp_c.setText(text + " C");
     }
 }

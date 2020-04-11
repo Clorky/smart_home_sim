@@ -22,7 +22,7 @@ public class RoomController {
         return roomRepository.save(room);
     }
 
-    @GetMapping(path = "/add")
+    @GetMapping(path = "/sensors")
     public @ResponseBody
     Iterable<Room> getAllSensors() {
         // This returns a JSON or XML with the users
