@@ -1,4 +1,4 @@
-package sample;
+package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControllerKitchen {
+public class StatisticsController {
+
     public void goBack(ActionEvent evt) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
         Scene mainView = new Scene(mainViewParent);
 
         Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();

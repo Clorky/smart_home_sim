@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainHubController">
    <top>
       <HBox prefHeight="200.0" prefWidth="1024.0">
          <children>
@@ -30,7 +30,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="200.0" prefWidth="512.0">
                <children>
-                  <JFXButton text=" ">
+                  <JFXButton onAction="#changeScreenStatistics" text=" ">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -14,7 +14,7 @@ public class RoomController {
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
     Room addNewSensor(@RequestBody Room room) {
-        //TODO: kde ukládat senzory
+
         SensorFactory.createSensor(room);
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request

@@ -2,14 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="088ab251-dc08-4588-8b1b-9f1174853576" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_20190722.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/BathroomWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/BedroomWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/MainHubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ControllerBathroom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ControllerBedroom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ControllerKitchen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ControllerLiving.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/JSONHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/KitchenWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/LivingWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RoomsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/RoomsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/mistnosti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/mistnosti.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/mainHub.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +66,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/json-20190722.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -67,12 +76,12 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <option name="MAIN_CLASS_NAME" value="application.Main" />
       <module name="application" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Honza\Downloads\javaDependencies\javafx-sdk-11.0.2\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -106,6 +115,7 @@
       <workItem from="1585934857201" duration="203000" />
       <workItem from="1586472037451" duration="6456000" />
       <workItem from="1586561564080" duration="3983000" />
+      <workItem from="1586620460569" duration="2590000" />
     </task>
     <task id="LOCAL-00001" summary="nothing important">
       <created>1584874098799</created>
@@ -150,30 +160,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="230" width="477" height="578" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585475006728" />
-    <state x="697" y="259" key="FileChooserDialogImpl" timestamp="1585935046678">
+    <state x="697" y="259" key="FileChooserDialogImpl" timestamp="1586620536768">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="697" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585935046678" />
-    <state width="1877" height="159" key="GridCell.Tab.0.bottom" timestamp="1586565551197">
+    <state x="697" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586620536768" />
+    <state width="1877" height="159" key="GridCell.Tab.0.bottom" timestamp="1586641926691">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="159" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
-    <state width="1877" height="159" key="GridCell.Tab.0.center" timestamp="1586565551197">
+    <state width="1877" height="159" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586641926691" />
+    <state width="1877" height="159" key="GridCell.Tab.0.center" timestamp="1586641926691">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="159" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
-    <state width="1877" height="159" key="GridCell.Tab.0.left" timestamp="1586565551197">
+    <state width="1877" height="159" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586641926691" />
+    <state width="1877" height="159" key="GridCell.Tab.0.left" timestamp="1586641926691">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="159" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
-    <state width="1877" height="159" key="GridCell.Tab.0.right" timestamp="1586565551197">
+    <state width="1877" height="159" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586641926691" />
+    <state width="1877" height="159" key="GridCell.Tab.0.right" timestamp="1586641926691">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="159" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586565551197" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1585479911608">
+    <state width="1877" height="159" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586641926691" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1586620540713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585479911608" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586620540713" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585934994250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

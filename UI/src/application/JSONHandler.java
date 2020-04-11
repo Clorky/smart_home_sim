@@ -1,4 +1,4 @@
-package sample;
+package application;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +20,12 @@ public class JSONHandler {
             result.append(line);
         }
         rd.close();
+
+//        JSONObject jObj = new JSONObject(result);
+//        System.out.println("--------------------------------------");
+//        System.out.println(jObj.get("name"));
+//        System.out.println("--------------------------------------");
+
         return result.toString();
     }
 
