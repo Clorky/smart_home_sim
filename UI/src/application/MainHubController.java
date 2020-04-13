@@ -38,7 +38,7 @@ public class MainHubController {
     private JFXSlider slider;
     @FXML
     private void initialize(){
-        temp_c.setText(new DecimalFormat("#.00").format(slider.getValue()) + " C");
+        temp_c.setText(new DecimalFormat("#.0").format(slider.getValue()) + " C");
     }
 
     @FXML
@@ -46,7 +46,7 @@ public class MainHubController {
 
     @FXML
     private void increment() {
-        String text = String.valueOf(new DecimalFormat("#.00").format(slider.getValue()));
+        String text = String.valueOf(new DecimalFormat("#.0").format(slider.getValue()));
         temp_c.setText(text + " C");
     }
 }

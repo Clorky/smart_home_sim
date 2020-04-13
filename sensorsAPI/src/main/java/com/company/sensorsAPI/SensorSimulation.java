@@ -15,7 +15,7 @@ public class SensorSimulation implements Runnable{
 
         while(true){
 
-            if(!sensors.isEmpty()) System.out.println(sensors.get(0).getRoomId());
+//            if(!sensors.isEmpty()) System.out.println(sensors.get(0).getRoomId());
 
             waitDay();
         }
@@ -29,7 +29,7 @@ public class SensorSimulation implements Runnable{
     private void waitDay(){
         try{
             Thread.sleep(10000);
-        }catch(Exception e){
+        }catch(InterruptedException e){
             e.printStackTrace();
         }
     }

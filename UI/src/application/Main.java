@@ -18,6 +18,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        Thread t = new Thread(new DataReceiver());
+        t.start();
         launch(args);
+        DataReceiver.running = false;
     }
 }

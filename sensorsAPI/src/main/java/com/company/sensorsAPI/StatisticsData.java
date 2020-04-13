@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Sensor {
+public class StatisticsData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,35 +16,14 @@ public class Sensor {
     private double currentConsumption;
     private double lightsOnNumberInHours;
 
-    public Sensor(){
-
+    public StatisticsData() {
     }
 
-    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInHours) {
-        this.id = id;
+    public StatisticsData(Integer roomId, double temperature, double currentConsumption, double lightsOnNumberInHours){
+        this.roomId = roomId;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
         this.lightsOnNumberInHours = lightsOnNumberInHours;
-    }
-
-    public Sensor(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public double getCurrentConsumption() {
-        return currentConsumption;
-    }
-
-    public double getLightsOnNumberInHours() {
-        return lightsOnNumberInHours;
     }
 
     public Integer getId() {
@@ -55,16 +34,32 @@ public class Sensor {
         this.id = id;
     }
 
+    public Integer getRoomId() {
+        return roomId;
+    }
+
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
+    }
+
+    public double getTemperature() {
+        return temperature;
     }
 
     public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
+    public double getCurrentConsumption() {
+        return currentConsumption;
+    }
+
     public void setCurrentConsumption(double currentConsumption) {
         this.currentConsumption = currentConsumption;
+    }
+
+    public double getLightsOnNumberInHours() {
+        return lightsOnNumberInHours;
     }
 
     public void setLightsOnNumberInHours(double lightsOnNumberInHours) {

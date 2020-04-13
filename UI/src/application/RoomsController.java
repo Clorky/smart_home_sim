@@ -34,7 +34,10 @@ public class RoomsController {
     }
 
     public void addRoom() throws IOException{
-        JSONHandler.post("http://localhost:8080/sensor/add", "{\"name\": \"room\"}");
+        JSONHandler.post("http://localhost:8080/sensor/add", "{\"name\": \"test room278\"}");
+    }
 
+    public void deleteRoom() throws  IOException{
+        JSONHandler.post("http://localhost:8080/sensor/delete", "{\"name\": \"bedroom231\"}");
     }
 }
