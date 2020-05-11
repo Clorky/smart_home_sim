@@ -1,4 +1,4 @@
-package application;
+package com.company.sensorsAPI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class JSONHandler {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            //System.out.println(response);
+            //System.out.println(response.toString());
         }
     }
 }
