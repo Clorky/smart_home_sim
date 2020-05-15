@@ -1,34 +1,40 @@
 package com.company.sensorsAPI;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Sensor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //TODO: primary key a foreign key z room (Room room)
+    @Column(name = "sensor_id")
     private Integer id;
+    @OneToOne(optional = false)
+    private Room room;
     private String sensorName;
     private boolean isHeated;
     private double requestedTemp;
     private double temperature;
     private double currentConsumption;
     private double lightsOnNumberInHours;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor")
+    List<StatisticsData> statistics = new ArrayList<StatisticsData>();
 
     public Sensor(){
 
     }
 
-    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean isHeated, double requestedTemp) {
+    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean isHeated, double requestedTemp, Room room) {
         this.requestedTemp = requestedTemp;
         this.isHeated = isHeated;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
         this.lightsOnNumberInHours = lightsOnNumberInHours;
         this.sensorName = sensorName;
+        this.room = room;
     }
 
     public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean isHeated, double requestedTemp) {
@@ -94,5 +100,12 @@ public class Sensor {
 
     public void setHeated(boolean heated) {
         isHeated = heated;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

@@ -48,7 +48,7 @@
       </HBox>
    </top>
    <bottom>
-      <HBox fx:id="sliderEnabler" alignment="CENTER" onMouseEntered="#checkOnEnteredSlider" prefHeight="216.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="sliderEnabler" alignment="CENTER" prefHeight="216.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="209.0" prefWidth="512.0">
                <children>

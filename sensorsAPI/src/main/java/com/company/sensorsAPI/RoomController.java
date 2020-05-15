@@ -15,14 +15,11 @@ public class RoomController {
 
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
-    Room addNewRoom(@RequestBody Room room) {
-
-        if (room.getName() != null){
-            Sensor sensor = new Sensor(10, 0, 0, room.getName() + "_sensor", false, 21.5);
-            sensorRepository.save(sensor);
-        }
-        return roomRepository.save(room);
-
+    void addNewRoom(@RequestBody Room room) {
+        Room room1 = new Room(room.getName());
+        roomRepository.save(room1);
+        Sensor sensor = new Sensor(10, 0, 0, room.getName() + "_sensor", false, 21.5, room1);
+        sensorRepository.save(sensor);
     }
 
     @PostMapping(path = "/delete") // Map ONLY POST Requests

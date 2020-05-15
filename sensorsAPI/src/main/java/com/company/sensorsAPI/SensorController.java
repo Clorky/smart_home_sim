@@ -82,7 +82,7 @@ public class SensorController {
         Iterable<Sensor> sensors = sensorRepository.findAll();
         for (Sensor s : sensors) {
             statisticsDataRepository.save(new StatisticsData(s.getSensorName(), s.getTemperature(),
-                    s.getCurrentConsumption(), s.getLightsOnNumberInHours(), s.isHeated()));
+                    s.getCurrentConsumption(), s.getLightsOnNumberInHours(), s.isHeated(), s));
         }
         return sensors;
     }

@@ -7,6 +7,8 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,7 +22,7 @@ public class SensorSimulation implements Runnable{
     private final int waitTime = 1000;
     private Random random = new Random();
     private double elect, light;
-    private final double TEMPERATURE_CONST = 0.2;
+    private final double TEMPERATURE_CONST = 0.1;
 
     @Override
     public void run() {
@@ -34,6 +36,7 @@ public class SensorSimulation implements Runnable{
                 JSONParser parser = new JSONParser();
                 try {
                     String sensorsJSON = JSONHandler.get("http://localhost:8080/sensors/all");
+                    System.out.println(sensorsJSON);
                     Object obj = parser.parse(sensorsJSON);
                     JSONArray arr = (JSONArray) obj;
 
@@ -67,10 +70,12 @@ public class SensorSimulation implements Runnable{
                     }
 
                     if(sensor.isHeated()) {
-                        sensor.setTemperature(sensor.getTemperature() + TEMPERATURE_CONST);
+                        BigDecimal bd = new BigDecimal(sensor.getTemperature() + TEMPERATURE_CONST).setScale(2, RoundingMode.HALF_UP);
+                        sensor.setTemperature(Double.parseDouble(bd.toString()));
                     }
                     else {
-                        sensor.setTemperature(sensor.getTemperature() - TEMPERATURE_CONST);
+                        BigDecimal bd = new BigDecimal(sensor.getTemperature() - TEMPERATURE_CONST).setScale(2, RoundingMode.HALF_UP);
+                        sensor.setTemperature(Double.parseDouble(bd.toString()));
                     }
 
                     sensor.setCurrentConsumption(elect);
