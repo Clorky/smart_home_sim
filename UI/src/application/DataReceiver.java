@@ -1,9 +1,11 @@
 package application;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import org.json.JSONObject;
 
-public class DataReceiver implements Runnable {
+public class DataReceiver extends Task {
 
     private final int sleepTime = 1000;
 
@@ -21,7 +23,9 @@ public class DataReceiver implements Runnable {
 
     @Override
     public void run() {
-        while(Main.running || RoomsController.removingInProcess){
+
+        while(Main.running || RoomsController.removingInProcess){ //background worker
+            if(this.isCancelled()) break;
             roomsController.updateRemoval();
             try {
                 Thread.sleep(sleepTime);
@@ -32,7 +36,10 @@ public class DataReceiver implements Runnable {
             try {
                 jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + roomName + "_sensor");
             } catch (Exception e) {
-                //e.printStackTrace();
+                Main.serverOn = false;
+                Platform.runLater(() -> {
+                    new Warning(Warning.WarningType.SERVER_DOWN);
+                });
                 continue;
             }
 
@@ -51,7 +58,19 @@ public class DataReceiver implements Runnable {
         }
     }
 
+    @Override
+    public boolean cancel(boolean b) {
+        return super.cancel(b);
+    }
+
+
+
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+
+    @Override
+    protected Object call() throws Exception {
+        return null;
     }
 }
