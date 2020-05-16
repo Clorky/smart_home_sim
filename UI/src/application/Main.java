@@ -9,11 +9,13 @@ import javafx.scene.control.ButtonType;
 
 import javafx.stage.Stage;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DecimalFormat;
 
 public class Main extends Application { //TODO: Statistiky, testy, diagramy :)
 
-    public static boolean serverOn = false;
+    public static boolean serverOn = true;
     public static boolean running = true;
     public static ServiceManager serviceManager = new ServiceManager();
     public static DecimalFormat df = new DecimalFormat("#.0");
@@ -28,16 +30,24 @@ public class Main extends Application { //TODO: Statistiky, testy, diagramy :)
     }
 
     public static void main(String[] args) {
-        Thread thread = new Thread(serviceManager);
+        Thread thread = new Thread(serviceManager, "service manager thread from main");
         thread.start();
         launch(args);
         running = false;
-        serviceManager.cancel();
     }
 
+    public static boolean checkServerConnection(){
+        try {
+            URL url = new URL("http://localhost:8080/sensors");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(100);
+            if(conn.getResponseCode() < 300) return true;
 
-    public static void showMsgWarn(String message){ //TODO: nahradit vlastními warningy
-        Alert alert = new Alert(Alert.AlertType.WARNING, message, ButtonType.OK);
-        alert.showAndWait();
+        } catch(Exception e) {
+            return false;
+        }
+        return true;
     }
+
 }

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import static application.Main.checkServerConnection;
 import static application.Main.serverOn;
 
 public class MainHubController {
@@ -38,7 +39,6 @@ public class MainHubController {
         if(!serverOn) slider.setDisable(true);
         slider.setDisable(false);
     }
-
     public void changeScreenRooms(ActionEvent evt) throws IOException {
         if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("mistnosti.fxml"));
@@ -49,7 +49,6 @@ public class MainHubController {
         window.setScene(roomsView);
         window.show();
     }
-
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
         if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));

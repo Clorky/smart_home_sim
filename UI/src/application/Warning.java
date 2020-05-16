@@ -21,7 +21,9 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Optional;
 
-public class Warning{ //TODO: zamknou okno, vykutit tři tečky :)
+import static application.Main.checkServerConnection;
+
+public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to co se po nich spusti)
 
     private Alert alert;
     private Stage window;
@@ -57,7 +59,14 @@ public class Warning{ //TODO: zamknou okno, vykutit tři tečky :)
 
         }
         if(warningType == WarningType.INVALID_NAME) {
-
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Zadejte jiné jméno místnosti", ButtonType.OK);
+            alert.getDialogPane().setMinWidth(200);
+            alert.showAndWait();
+        }
+        if(warningType == WarningType.ALREADY_USED) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Místnost nebyla přidána, protože její název už existuje", ButtonType.OK);
+            alert.getDialogPane().setMinWidth(200);
+            alert.showAndWait();
         }
     }
 
@@ -85,23 +94,8 @@ public class Warning{ //TODO: zamknou okno, vykutit tři tečky :)
                 return null;
             }
         };
-        new Thread(task).start();
+        new Thread(task, "init server down thread from Warning").start();
 }
-    private boolean checkServerConnection(){
-
-        try {
-            URL url = new URL("http://localhost:8080/sensors");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setConnectTimeout(100);
-            if(conn.getResponseCode() < 300)
-                return true;
-        } catch(Exception e) {
-            System.out.println("fail");
-            return false;
-        }
-        return true;
-    }
 
     public enum WarningType {
         SERVER_DOWN, INVALID_NAME, ALREADY_USED
