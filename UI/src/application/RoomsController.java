@@ -16,7 +16,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -121,6 +120,7 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
 
     public void goBack(ActionEvent evt) throws IOException {
         dr.cancel();
+
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
         Scene mainView = new Scene(mainViewParent);
 

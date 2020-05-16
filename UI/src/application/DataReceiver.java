@@ -24,8 +24,9 @@ public class DataReceiver extends Task {
     @Override
     public void run() {
 
-        while(Main.running || RoomsController.removingInProcess){ //background worker
+        while(Main.running || RoomsController.removingInProcess){
             if(this.isCancelled()) break;
+
             roomsController.updateRemoval();
             try {
                 Thread.sleep(sleepTime);
@@ -36,6 +37,8 @@ public class DataReceiver extends Task {
             try {
                 jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + roomName + "_sensor");
             } catch (Exception e) {
+
+                //e.printStackTrace();
                 Main.serverOn = false;
                 Platform.runLater(() -> {
                     new Warning(Warning.WarningType.SERVER_DOWN);

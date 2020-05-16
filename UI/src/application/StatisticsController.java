@@ -16,7 +16,6 @@ public class StatisticsController {
         Scene mainView = new Scene(mainViewParent);
         Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
         window.setScene(mainView);
-
         window.show();
     }
 }

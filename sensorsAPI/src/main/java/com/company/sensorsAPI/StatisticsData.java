@@ -25,7 +25,6 @@ public class StatisticsData {
     @CreationTimestamp
     private Timestamp timestamp;
 
-
     public StatisticsData() {
     }
 
