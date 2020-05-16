@@ -1,40 +1,49 @@
 package com.company.sensorsAPI;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
-public class StatisticsData { //odkud ty data dostanu? jak?
+public class StatisticsData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String roomName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer statistics_id;
+    @ManyToOne
+    @JoinColumn(name="sensor_fk")
+    private Sensor sensor;
+    private String sensorName;
     private double temperature;
     private double currentConsumption;
     private double lightsOnNumberInHours;
     private boolean wasHeated;
+    @CreationTimestamp
+    private Timestamp timestamp;
 
     public StatisticsData() {
     }
 
-    public StatisticsData(String roomName, double temperature, double currentConsumption, double lightsOnNumberInHours, boolean wasHeated){
-        this.roomName = roomName;
+    public StatisticsData(String sensorName, double temperature, double currentConsumption, double lightsOnNumberInHours, boolean wasHeated, Sensor sensor){
+        this.sensorName = sensorName;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
         this.lightsOnNumberInHours = lightsOnNumberInHours;
         this.wasHeated = wasHeated;
+        this.sensor = sensor;
 
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getStatistics_id() {
+        return statistics_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setStatistics_id(Integer id) {
+        this.statistics_id = id;
     }
 
     public double getTemperature() {
@@ -61,12 +70,12 @@ public class StatisticsData { //odkud ty data dostanu? jak?
         this.lightsOnNumberInHours = lightsOnNumberInHours;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setSensorName(String roomName) {
+        this.sensorName = roomName;
     }
 
     public boolean isWasHeated() {
@@ -76,4 +85,13 @@ public class StatisticsData { //odkud ty data dostanu? jak?
     public void setWasHeated(boolean wasHeated) {
         this.wasHeated = wasHeated;
     }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
+    }
 }
+

@@ -7,31 +7,40 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static application.Main.serverOn;
-import static application.Main.validateServerConnection;
 
 public class MainHubController {
-
     @FXML
     private JFXSlider slider;
     @FXML
-    private HBox toasterBox;
-    @FXML
+
     private Label temp_c ;
 
     private double lastGlobalTemp = 21.5;
 
+    @FXML
+    private void initialize(){
+
+        try {
+            lastGlobalTemp = Double.parseDouble(JSONHandler.get("http://localhost:8080/sensors/sensor/any"));
+            serverOn = true;
+        } catch (Exception e) {
+            serverOn = false;
+        }
+        String formattedTemp = Main.df.format(lastGlobalTemp);
+        temp_c.setText(formattedTemp + " °C");
+        if(!serverOn) slider.setDisable(true);
+        slider.setDisable(false);
+    }
+
     public void changeScreenRooms(ActionEvent evt) throws IOException {
-        update();
-        if(!serverOn) return;
+        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("mistnosti.fxml"));
         Scene roomsView = new Scene(roomsViewParent);
 
@@ -42,8 +51,7 @@ public class MainHubController {
     }
 
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
-        update();
-        if(!serverOn) return;
+        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
         Scene roomsView = new Scene(roomsViewParent);
 
@@ -54,62 +62,26 @@ public class MainHubController {
     }
 
     @FXML
-    private void initialize(){
-        temp_c.setText(new DecimalFormat("#.0").format(slider.getValue()) + " °C");
-        if(!validateServerConnection()){
-        slider.setDisable(true);
-        return;
-        }
-        update();
-        slider.setDisable(false);
-    }
-
-    @FXML
     private void increment() {
-        String text = String.valueOf(Main.df.format(slider.getValue()));
-        String sendText = String.valueOf(slider.getValue());
-        temp_c.setText(text + " °C");
-        lastGlobalTemp = Double.parseDouble(sendText);
-        try {
-            JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + sendText);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private void checkOnEnteredSlider(){
-        if(!validateServerConnection()){
-            slider.setDisable(true);
-            slider.setValue(lastGlobalTemp);
-            temp_c.setText(Main.df.format(slider.getValue()) + " °C");
-            showMsg();
-            return;
-        }else{
-            slider.setDisable(false);
+        if(serverOn) {
+            BigDecimal bd = new BigDecimal(slider.getValue()).setScale(2, RoundingMode.HALF_UP);
+            String formattedText = bd.toString();
             try {
-                lastGlobalTemp = Double.parseDouble(JSONHandler.get("http://localhost:8080/sensors/sensor/any"));
+                JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + formattedText);
+                lastGlobalTemp = Double.parseDouble(formattedText);
+                temp_c.setText(lastGlobalTemp + " °C");
+                slider.setValue(lastGlobalTemp);
             } catch (Exception e) {
-                e.printStackTrace();
+                serverOn = false;
+                slider.setDisable(true);
             }
         }
-    }
-    public void update(){
-        if(validateServerConnection()){
-        try {
-            lastGlobalTemp = Double.parseDouble(JSONHandler.get("http://localhost:8080/sensors/sensor/any"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        }else{
-            serverOn = false;
+        else {
             slider.setDisable(true);
-            showMsg();
+            temp_c.setText(lastGlobalTemp + " °C");
+            slider.setValue(lastGlobalTemp);
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            slider.setDisable(false);
         }
-        slider.setValue(lastGlobalTemp);
-        temp_c.setText(Main.df.format(lastGlobalTemp) + " °C");
-    }
-    private void showMsg(){
-        Stage stage = (Stage) toasterBox.getScene().getWindow();
-        Toast.makeText(stage, "Server neběží.", 2000, 300, 300, toasterBox);
     }
 }
