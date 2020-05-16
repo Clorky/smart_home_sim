@@ -20,6 +20,7 @@ public class MainHubController {
     @FXML
     private JFXSlider slider;
     @FXML
+
     private Label temp_c ;
 
     private double lastGlobalTemp = 21.5;
@@ -82,5 +83,4 @@ public class MainHubController {
             slider.setDisable(false);
         }
     }
-
 }
