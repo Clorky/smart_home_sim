@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static application.Main.serverOn;
+
 public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - vypnu server - main hub (goback) - klik mistnosti - dialog - crash)
     @FXML public void handleMouseClick(MouseEvent arg0) {
         System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
@@ -172,6 +174,16 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
         usedRoomNames.remove(roomName);
         roomsToDelete.add(roomName);
     }
+    public void changeScreenStatistics(ActionEvent evt) throws IOException {
+        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
+        Scene roomsView = new Scene(roomsViewParent);
+
+        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+
+        window.setScene(roomsView);
+        window.show();
+    }
 
     public double getCurrentTemperature() {
         return currentTemperature;
@@ -202,7 +214,6 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
-
 
     }
 }

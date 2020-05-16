@@ -30,7 +30,7 @@
                </VBox.margin></ListView>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="19.0" prefHeight="19.0" prefWidth="102.0" text="Název místnosti" textAlignment="CENTER" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="19.0" prefHeight="19.0" prefWidth="102.0" text="Název místnosti" textAlignment="CENTER" textFill="#1c00b9" />
                </children>
             </Pane>
             <TextField fx:id="textAdd" alignment="CENTER" promptText="Zadej název místnosti" />
@@ -62,10 +62,15 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin></Pane>
-            <Button id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Zpět">
+            <Button id="goBack" fx:id="statisticsButtonInRooms" alignment="CENTER" mnemonicParsing="false" onAction="#changeScreenStatistics" text="Statistiky">
                <HBox.margin>
-                  <Insets left="250.0" top="20.0" />
+                  <Insets left="150.0" />
                </HBox.margin></Button>
+            <Button id="goBack" fx:id="goBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Zpět">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" />
