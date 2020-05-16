@@ -22,11 +22,6 @@ public class JSONHandler {
         }
         rd.close();
 
-//        JSONObject jObj = new JSONObject(result);
-//        System.out.println("--------------------------------------");
-//        System.out.println(jObj.get("name"));
-//        System.out.println("--------------------------------------");
-
         return result.toString();
     }
 
@@ -48,7 +43,6 @@ public class JSONHandler {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response);
         }
     }
 }

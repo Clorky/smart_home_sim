@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import static application.Main.checkServerConnection;
 import static application.Main.serverOn;
 
 public class MainHubController {

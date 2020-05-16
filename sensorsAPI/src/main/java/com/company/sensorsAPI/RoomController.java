@@ -31,7 +31,7 @@ public class RoomController {
         for (Room room1 : rooms) {
             if(room.getName().equals(room1.getName())){
                 for (Sensor sensor : sensors) {
-                    if(sensor.getSensorName().equals(room1.getName() + "_sensor")) sensorRepository.delete(sensor);
+                   if(sensor.getSensorName().equals(room1.getName() + "_sensor")) sensorRepository.delete(sensor);
                 }
                 roomRepository.delete(room1); //TODO: můžeme mazat místnost a zároveň její senzor a je to správně? (cascade...)
                 return true;

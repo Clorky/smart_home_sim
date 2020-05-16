@@ -14,7 +14,7 @@ public class StatisticsData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer statistics_id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="sensor_fk")
     private Sensor sensor;
     private String sensorName;

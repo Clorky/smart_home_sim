@@ -9,16 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -26,7 +23,8 @@ import java.util.regex.Pattern;
 
 import static application.Main.serverOn;
 
-public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - vypnu server - main hub (goback) - klik mistnosti - dialog - crash)
+public class RoomsController implements Controller { //TODO: refactor a chytání hmyzu (místnosti - vypnu server - main hub (goback) - klik mistnosti - dialog - crash)
+
     @FXML public void handleMouseClick(MouseEvent arg0) {
         System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
     }
@@ -35,36 +33,32 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
     @FXML
     private ListView<String> listView;
     @FXML
-    private TextField textAdd;
+    private TextField textAddTextField;
     @FXML
-    private Label sensorName;
+    private Label sensorNameLabel;
     @FXML
-    private Label lightsOnTime;
+    private Label lightsOnTimeLabel;
     @FXML
-    private Label temperature;
+    private Label temperatureLabel;
     @FXML
-    private Label powerConsumptionAtm;
+    private Label powerConsumptionAtmLabel;
 
-    private List<String> usedRoomNames;
-    private String roomName;
-    private double electricityUsage, lightTime, currentTemperature;
-    private DataReceiver dr;
+    private List<String> usedRoomNames = new ArrayList<>();
 
-    private List<String> roomsToDelete;
+    public static List<String> roomsToDelete = new ArrayList<>();
+
+    private String currentlyChosenRoomName = null; //TODO: vytvorit tridu Room s těmito atributy
+    private double electricityUsage = 0;
+    private double lightTime = 0;
+    private double currentTemperature = 0;
 
     public static boolean removingInProcess = false;
 
     @FXML
     private void initialize() {
-        if(!Main.serverOn)
-            return;
-        roomsToDelete = new ArrayList<>();
-        dr = new DataReceiver(this);
-        Thread thread = new Thread(dr);
-        thread.start();
 
         listView.setOnMouseClicked(mouseEvent -> {
-            dr.setRoomName(listView.getSelectionModel().getSelectedItem());
+            currentlyChosenRoomName = listView.getSelectionModel().getSelectedItem();
             sensorPaneId.setVisible(true);
             if(listView.getSelectionModel().getSelectedItem() == null){
                 sensorPaneId.setVisible(false);
@@ -73,17 +67,11 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
 
         usedRoomNames = new ArrayList<>();
 
-        String roomName = null;
-
         try {
-            roomName = JSONHandler.get("http://localhost:8080/room/all");
-        } catch (Exception e) {
-            Main.serverOn = false;
-            new Warning(Warning.WarningType.SERVER_DOWN);
-        }
+            String roomName = JSONHandler.get("http://localhost:8080/room/all");
 
-        JSONParser parser = new JSONParser();
-        try{
+            JSONParser parser = new JSONParser();
+
             Object obj = parser.parse(roomName);
             JSONArray arr = (JSONArray) obj;
 
@@ -92,37 +80,43 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
                 listView.getItems().add(jsob.get("name").toString());
                 usedRoomNames.add(jsob.get("name").toString());
             }
-        }catch(ParseException e){
-            System.out.println("Chyba parsování.");
-        }
-    }
-
-    public void update(){
-        Platform.runLater(()->{
-            sensorName.setText(roomName + "_sensor");
-            temperature.setText(Main.df.format(currentTemperature) + " °C");
-            powerConsumptionAtm.setText(Main.df.format(electricityUsage) + " W");
-            lightsOnTime.setText(Main.df.format(lightTime) + " hodin");
-        });
-    }
-    public void updateRemoval(){
-        if(roomsToDelete.isEmpty()) {
-            removingInProcess = false;
-            return;
-        }
-        else removingInProcess = true;
-
-        try {
-            JSONHandler.post("http://localhost:8080/room/delete", "{\"name\": " + "\"" + roomsToDelete.get(0) + "\"" + "}");
-            System.out.println("removed");
-            roomsToDelete.remove(0);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
+        }
+        Main.serviceManager.addToControllerList(this);
+    }
+
+    public boolean update(){
+        if(currentlyChosenRoomName == null) return false;
+        Platform.runLater(()->{
+            sensorNameLabel.setText(currentlyChosenRoomName + "_sensor");
+            temperatureLabel.setText(Main.df.format(currentTemperature) + " °C");
+            powerConsumptionAtmLabel.setText(Main.df.format(electricityUsage) + " W");
+            lightsOnTimeLabel.setText(Main.df.format(lightTime) + " hodin");
+        });
+        return true;
+    }
+
+    public void requestData() {
+
+        if(currentlyChosenRoomName == null) return;
+        try {
+            String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
+
+            org.json.JSONObject obj = new org.json.JSONObject(jsonString);
+            currentTemperature = Double.parseDouble(obj.get("temperature").toString());
+            electricityUsage = Double.parseDouble(obj.get("currentConsumption").toString());
+            lightTime = Double.parseDouble(obj.get("lightsOnNumberInHours").toString());
+//            sensorName = obj.get("sensorName").toString(); //TODO: potrebujeme to?
+        } catch (Exception e) {
+            Main.serverOn = false;
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
         }
     }
 
     public void goBack(ActionEvent evt) throws IOException {
-        dr.cancel();
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
         Scene mainView = new Scene(mainViewParent);
 
@@ -134,7 +128,7 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
 
     public void addButtonRoom(){
 
-        String roomName = textAdd.getText();
+        String roomName = textAddTextField.getText(); //room name se odvodi z text fieldu z UI
 
         Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(roomName);
@@ -142,12 +136,12 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
 
         if(roomName.trim().length() == 0 || b){
             System.out.println("not added");
-            Main.showMsgWarn("Místnost nebyla přidána, zvolte jiný název.");
+            new Warning(Warning.WarningType.INVALID_NAME);
             return;
         }
         for (String usedRoomName : usedRoomNames) {
             if(roomName.equals(usedRoomName)){
-                Main.showMsgWarn("Místnost nebyla přidána, protože její název už existuje.");
+                new Warning(Warning.WarningType.ALREADY_USED);
                 return;
             }
         }
@@ -157,6 +151,7 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
         } catch (IOException e) {
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
         }
         usedRoomNames.add(roomName);
     }
@@ -170,10 +165,11 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
         }
             sensorPaneId.setVisible(false);
 
-        dr.setRoomName(null);
+        currentlyChosenRoomName = null;
         usedRoomNames.remove(roomName);
         roomsToDelete.add(roomName);
     }
+
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
         if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
@@ -185,36 +181,5 @@ public class RoomsController { //TODO: refactor a chytání hmyzu (místnosti - 
         window.show();
     }
 
-    public double getCurrentTemperature() {
-        return currentTemperature;
-    }
-
-    public void setCurrentTemperature(double currentTemperature) {
-        this.currentTemperature = currentTemperature;
-    }
-    public double getElectricityUsage() {
-        return electricityUsage;
-    }
-
-    public void setElectricityUsage(double electricityUsage) {
-        this.electricityUsage = electricityUsage;
-    }
-
-    public double getLightTime() {
-        return lightTime;
-    }
-
-    public void setLightTime(double lightTime) {
-        this.lightTime = lightTime;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-
-    }
 }
 
