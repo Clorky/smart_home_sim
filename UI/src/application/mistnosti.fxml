@@ -46,7 +46,7 @@
          <children>
             <VBox>
                <children>
-                  <Button id="addButtonRoom" mnemonicParsing="false" onAction="#addButtonRoom" text="Přidat místnost">
+                  <Button id="addButtonRoom" mnemonicParsing="false" onAction="#addRoom" text="Přidat místnost">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>

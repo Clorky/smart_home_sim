@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static application.Main.checkServerConnection;
 import static application.Main.serverOn;
 
-public class MainHubController {
+public class MainHubController implements Controller{
     @FXML
     private JFXSlider slider;
     @FXML
-
     private Label temp_c ;
 
     private double lastGlobalTemp = 21.5;
@@ -36,28 +34,19 @@ public class MainHubController {
         }
         String formattedTemp = Main.df.format(lastGlobalTemp);
         temp_c.setText(formattedTemp + " °C");
+        slider.setValue(lastGlobalTemp);
         if(!serverOn) slider.setDisable(true);
         slider.setDisable(false);
     }
-    public void changeScreenRooms(ActionEvent evt) throws IOException {
-        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("mistnosti.fxml"));
-        Scene roomsView = new Scene(roomsViewParent);
 
-        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
-
-        window.setScene(roomsView);
-        window.show();
+    @Override
+    public boolean update() {  //TODO: topeni bylo treba zapnout % dni v roce - bude v update a request data
+        return false;
     }
-    public void changeScreenStatistics(ActionEvent evt) throws IOException {
-        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
-        Scene roomsView = new Scene(roomsViewParent);
 
-        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+    @Override
+    public void requestData() {
 
-        window.setScene(roomsView);
-        window.show();
     }
 
     @FXML
@@ -82,5 +71,26 @@ public class MainHubController {
             new Warning(Warning.WarningType.SERVER_DOWN);
             slider.setDisable(false);
         }
+    }
+
+    public void changeScreenRooms(ActionEvent evt) throws IOException {
+        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("mistnosti.fxml"));
+        Scene roomsView = new Scene(roomsViewParent);
+
+        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+
+        window.setScene(roomsView);
+        window.show();
+    }
+    public void changeScreenStatistics(ActionEvent evt) throws IOException {
+        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
+        Scene roomsView = new Scene(roomsViewParent);
+
+        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+
+        window.setScene(roomsView);
+        window.show();
     }
 }

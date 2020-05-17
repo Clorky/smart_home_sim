@@ -17,20 +17,20 @@ public class ServiceManager extends Task {
     private int sleepTime = 1000;
 
     @Override
-    protected Object call() throws Exception {  //TODO: mistnosti -> oznaceni mistnosti -> vypnuti serveru -> updatovani hodnot - neco spatne
+    protected Object call() throws Exception {
 
         while(Main.running || removalInProcess){
 
             Thread.sleep(sleepTime);
 
-            Main.serverOn = checkServerConnection();
+            if(!Main.serverOn) continue;
 
             for (Controller controller : controllerList) {
-                controller.requestData();
-                controller.update();
+                Platform.runLater(() -> {
+                    controller.requestData();
+                    controller.update();
+                });
             }
-
-            if(!Main.serverOn) continue;
 
             if(!RoomsController.roomsToDelete.isEmpty()) {
                 removalInProcess = true;
@@ -41,6 +41,7 @@ public class ServiceManager extends Task {
 
                 } catch (IOException e) {
                     Main.serverOn = false;
+                    removalInProcess = false;
                     continue;
                 }
             }

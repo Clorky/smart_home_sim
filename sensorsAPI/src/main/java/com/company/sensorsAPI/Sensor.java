@@ -1,12 +1,13 @@
 package com.company.sensorsAPI;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-public class Sensor {
+public class Sensor{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //TODO: primary key a foreign key z room (Room room)
@@ -15,7 +16,8 @@ public class Sensor {
     @OneToOne(optional = false)
     private Room room;
     private String sensorName;
-    private boolean isHeated;
+    @Type(type="yes_no")
+    private boolean heated;
     private double requestedTemp;
     private double temperature;
     private double currentConsumption;
@@ -23,13 +25,16 @@ public class Sensor {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor")
     List<StatisticsData> statistics = new ArrayList<StatisticsData>();
 
+    private void test(){
+    }
+
     public Sensor(){
 
     }
 
-    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean isHeated, double requestedTemp, Room room) {
+    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean heated, double requestedTemp, Room room) {
         this.requestedTemp = requestedTemp;
-        this.isHeated = isHeated;
+        this.heated = heated;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
         this.lightsOnNumberInHours = lightsOnNumberInHours;
@@ -37,9 +42,9 @@ public class Sensor {
         this.room = room;
     }
 
-    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean isHeated, double requestedTemp) {
+    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean heated, double requestedTemp) {
         this.id = id;
-        this.isHeated = isHeated;
+        this.heated = heated;
         this.requestedTemp = requestedTemp;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
@@ -95,11 +100,7 @@ public class Sensor {
     }
 
     public boolean isHeated() {
-        return isHeated;
-    }
-
-    public void setHeated(boolean heated) {
-        isHeated = heated;
+        return this.heated;
     }
 
     public Room getRoom() {
@@ -107,5 +108,9 @@ public class Sensor {
     }
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public void setHeated(boolean heated) {
+        this.heated = heated;
     }
 }

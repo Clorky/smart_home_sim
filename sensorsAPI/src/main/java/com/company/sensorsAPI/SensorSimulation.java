@@ -3,8 +3,6 @@ package com.company.sensorsAPI;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -64,6 +62,7 @@ public class SensorSimulation implements Runnable{
                     light = random.nextInt(24);
 
                     if (sensor.getTemperature() <= sensor.getRequestedTemp()){
+                        System.out.println("jsemtu");
                         sensor.setHeated(true);
                     }else{
                         sensor.setHeated(false);
@@ -84,7 +83,7 @@ public class SensorSimulation implements Runnable{
                     try {
                         JSONHandler.post("http://localhost:8080/sensors/update/" + sensor.getId(), "{\"id\"" +
                                 ": " + sensor.getId() +  ", \"temperature\": " + sensor.getTemperature() + ", \"currentConsumption\": " + elect +
-                                ", \"lightsOnNumberInHours\": " + light + ", \"isHeated\": " + sensor.isHeated() +
+                                ", \"lightsOnNumberInHours\": " + light + ", \"heated\": " + sensor.isHeated() +
                                 ", \"requestedTemp\": " + sensor.getRequestedTemp() + "}");
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -95,7 +94,6 @@ public class SensorSimulation implements Runnable{
             }
         }
     }
-
 
     private void waitTime(){
         try{

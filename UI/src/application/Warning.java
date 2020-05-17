@@ -55,7 +55,12 @@ public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to c
             });
 
             Optional a = alert.showAndWait();
-            if(a.isPresent() && a.get() == appOffButton) Platform.exit();
+            if(a.isPresent() && a.get() == appOffButton) {
+                Main.running = false;
+                Platform.runLater(() -> {
+                    Platform.exit();
+                });
+            }
 
         }
         if(warningType == WarningType.INVALID_NAME) {

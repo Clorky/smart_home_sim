@@ -1,6 +1,7 @@
 package com.company.sensorsAPI;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -21,6 +22,7 @@ public class StatisticsData {
     private double temperature;
     private double currentConsumption;
     private double lightsOnNumberInHours;
+    @Type(type="yes_no")
     private boolean wasHeated;
     @CreationTimestamp
     private Timestamp timestamp;

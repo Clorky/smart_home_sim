@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +24,11 @@ import static application.Main.serverOn;
 
 public class RoomsController implements Controller { //TODO: refactor a chyt√°n√≠ hmyzu (m√≠stnosti - vypnu server - main hub (goback) - klik mistnosti - dialog - crash)
 
-    @FXML public void handleMouseClick(MouseEvent arg0) {
+    @FXML
+    public void handleMouseClick(MouseEvent arg0) {
         System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
     }
+
     @FXML
     private Pane sensorPaneId;
     @FXML
@@ -44,10 +45,10 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     private Label powerConsumptionAtmLabel;
 
     private List<String> usedRoomNames = new ArrayList<>();
-
     public static List<String> roomsToDelete = new ArrayList<>();
 
     private String currentlyChosenRoomName = null; //TODO: vytvorit tridu Room s tƒõmito atributy
+
     private double electricityUsage = 0;
     private double lightTime = 0;
     private double currentTemperature = 0;
@@ -60,7 +61,8 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         listView.setOnMouseClicked(mouseEvent -> {
             currentlyChosenRoomName = listView.getSelectionModel().getSelectedItem();
             sensorPaneId.setVisible(true);
-            if(listView.getSelectionModel().getSelectedItem() == null){
+            update();
+            if (listView.getSelectionModel().getSelectedItem() == null) {
                 sensorPaneId.setVisible(false);
             }
         });
@@ -87,9 +89,9 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         Main.serviceManager.addToControllerList(this);
     }
 
-    public boolean update(){
-        if(currentlyChosenRoomName == null) return false;
-        Platform.runLater(()->{
+    public boolean update() {
+        if (currentlyChosenRoomName == null) return false;
+        Platform.runLater(() -> {
             sensorNameLabel.setText(currentlyChosenRoomName + "_sensor");
             temperatureLabel.setText(Main.df.format(currentTemperature) + " ¬∞C");
             powerConsumptionAtmLabel.setText(Main.df.format(electricityUsage) + " W");
@@ -100,7 +102,7 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
 
     public void requestData() {
 
-        if(currentlyChosenRoomName == null) return;
+        if (currentlyChosenRoomName == null) return;
         try {
             String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
 
@@ -108,7 +110,6 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
             currentTemperature = Double.parseDouble(obj.get("temperature").toString());
             electricityUsage = Double.parseDouble(obj.get("currentConsumption").toString());
             lightTime = Double.parseDouble(obj.get("lightsOnNumberInHours").toString());
-//            sensorName = obj.get("sensorName").toString(); //TODO: potrebujeme to?
         } catch (Exception e) {
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
@@ -116,17 +117,7 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         }
     }
 
-    public void goBack(ActionEvent evt) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
-        Scene mainView = new Scene(mainViewParent);
-
-        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
-
-        window.setScene(mainView);
-        window.show();
-    }
-
-    public void addButtonRoom(){
+    public void addRoom() {
 
         String roomName = textAddTextField.getText(); //room name se odvodi z text fieldu z UI
 
@@ -134,13 +125,13 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         Matcher m = p.matcher(roomName);
         boolean b = m.find();
 
-        if(roomName.trim().length() == 0 || b){
+        if (roomName.trim().length() == 0 || b) {
             System.out.println("not added");
             new Warning(Warning.WarningType.INVALID_NAME);
             return;
         }
         for (String usedRoomName : usedRoomNames) {
-            if(roomName.equals(usedRoomName)){
+            if (roomName.equals(usedRoomName)) {
                 new Warning(Warning.WarningType.ALREADY_USED);
                 return;
             }
@@ -156,14 +147,14 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         usedRoomNames.add(roomName);
     }
 
-    public void removeRoom(){
-        removingInProcess = true;
+    public void removeRoom() {
         int index = listView.getSelectionModel().getSelectedIndex();
+        if (index < 0) return;
+        removingInProcess = true;
         String roomName = listView.getSelectionModel().getSelectedItem();
-        if (index >= 0) {
-            listView.getItems().remove(index);
-        }
-            sensorPaneId.setVisible(false);
+        listView.getItems().remove(index);
+
+        sensorPaneId.setVisible(false);
 
         currentlyChosenRoomName = null;
         usedRoomNames.remove(roomName);
@@ -171,15 +162,25 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     }
 
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
-        if(!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
+        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
         Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
         Scene roomsView = new Scene(roomsViewParent);
 
-        Stage window = (Stage) ((Node)evt.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();
 
         window.setScene(roomsView);
         window.show();
     }
 
+    public void goBack(ActionEvent evt) throws IOException {
+        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
+        Scene mainView = new Scene(mainViewParent);
+
+        Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();
+
+        window.setScene(mainView);
+        window.show();
+    }
 }
 
