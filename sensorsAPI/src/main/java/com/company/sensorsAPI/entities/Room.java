@@ -1,4 +1,4 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.entities;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.entities;
 
 import org.hibernate.annotations.Type;
 
@@ -13,7 +13,7 @@ public class Sensor{
     @GeneratedValue(strategy = GenerationType.AUTO) //TODO: primary key a foreign key z room (Room room)
     @Column(name = "sensor_id")
     private Integer id;
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     private Room room;
     private String sensorName;
     @Type(type="yes_no")
@@ -22,7 +22,7 @@ public class Sensor{
     private double temperature;
     private double currentConsumption;
     private double lightsOnNumberInHours;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor", orphanRemoval = true)
     List<StatisticsData> statistics = new ArrayList<StatisticsData>();
 
     private void test(){

@@ -1,13 +1,11 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.entities;
 
+import com.company.sensorsAPI.entities.Sensor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity
 public class StatisticsData {
@@ -15,7 +13,7 @@ public class StatisticsData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer statistics_id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="sensor_fk")
     private Sensor sensor;
     private String sensorName;

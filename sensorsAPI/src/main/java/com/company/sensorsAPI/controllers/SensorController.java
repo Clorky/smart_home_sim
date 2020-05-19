@@ -1,14 +1,16 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.controllers;
 
+import com.company.sensorsAPI.entities.Sensor;
+import com.company.sensorsAPI.entities.StatisticsData;
+import com.company.sensorsAPI.exceptions.SensorNotFoundException;
+import com.company.sensorsAPI.repositories.SensorRepository;
+import com.company.sensorsAPI.repositories.StatisticsDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 @Controller
 @RequestMapping(path = "/sensors")
 

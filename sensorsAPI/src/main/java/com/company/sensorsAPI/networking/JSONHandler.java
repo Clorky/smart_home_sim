@@ -1,4 +1,4 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,5 +1,8 @@
-package application;
+package application.controllers;
 
+import application.networking.JSONHandler;
+import application.Main;
+import application.warningSystems.Warning;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +60,7 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     public static boolean removingInProcess = false;
 
     @FXML
-    private void initialize() {
+    private synchronized void initialize() {
 
         listView.setOnMouseClicked(mouseEvent -> {
             currentlyChosenRoomName = listView.getSelectionModel().getSelectedItem();
@@ -86,7 +90,7 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
         }
-        Main.serviceManager.addToControllerList(this);
+        Main.serviceManager.setController(this);
     }
 
     public boolean update() {
@@ -100,12 +104,13 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         return true;
     }
 
-    public void requestData() {
+    public synchronized void requestData() {
 
         if (currentlyChosenRoomName == null) return;
         try {
-            String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
 
+            String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
+            System.out.println(jsonString);
             org.json.JSONObject obj = new org.json.JSONObject(jsonString);
             currentTemperature = Double.parseDouble(obj.get("temperature").toString());
             electricityUsage = Double.parseDouble(obj.get("currentConsumption").toString());
@@ -113,11 +118,12 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         } catch (Exception e) {
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
+            System.out.println(currentlyChosenRoomName);
             return;
         }
     }
 
-    public void addRoom() {
+    public synchronized void addRoom() { //mezerniky to shazuji
 
         String roomName = textAddTextField.getText(); //room name se odvodi z text fieldu z UI
 
@@ -162,8 +168,11 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     }
 
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
-        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
+        if (!serverOn) {
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
+        }
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("../UIResources/statistiky.fxml"));
         Scene roomsView = new Scene(roomsViewParent);
 
         Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();
@@ -173,8 +182,11 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     }
 
     public void goBack(ActionEvent evt) throws IOException {
-        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
+        if (!serverOn) {
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
+        }
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("../UIResources/mainHub.fxml"));
         Scene mainView = new Scene(mainViewParent);
 
         Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();

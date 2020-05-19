@@ -1,5 +1,10 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.controllers;
 
+import com.company.sensorsAPI.SensorSimulation;
+import com.company.sensorsAPI.entities.Room;
+import com.company.sensorsAPI.repositories.RoomRepository;
+import com.company.sensorsAPI.entities.Sensor;
+import com.company.sensorsAPI.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,20 +30,33 @@ public class RoomController {
     @PostMapping(path = "/delete") // Map ONLY POST Requests
     public @ResponseBody
     boolean removeRoom(@RequestBody Room room) {
+        if(SensorSimulation.deleteFlag) {
+            Iterable<Room> rooms = roomRepository.findAll();
+            Iterable<Sensor> sensors = sensorRepository.findAll();
+            for (Room room1 : rooms) {
+                if (room.getName().equals(room1.getName())) {
+                    for (Sensor sensor : sensors) {
+                        if (sensor.getSensorName().equals(room1.getName() + "_sensor")) {
 
-        Iterable<Room> rooms = roomRepository.findAll();
-        Iterable<Sensor> sensors = sensorRepository.findAll();
-        for (Room room1 : rooms) {
-            if(room.getName().equals(room1.getName())){
-                for (Sensor sensor : sensors) {
-                   if(sensor.getSensorName().equals(room1.getName() + "_sensor")) sensorRepository.delete(sensor);
+                            sensorRepository.delete(sensor);
+                        }
+                    }
+                    roomRepository.delete(room1); //TODO: můžeme mazat místnost a zároveň její senzor a je to správně? (cascade...)
+                    return true;
                 }
-                roomRepository.delete(room1); //TODO: můžeme mazat místnost a zároveň její senzor a je to správně? (cascade...)
-                return true;
             }
+        }else{
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("removing");
+            removeRoom(room);
         }
         return false;
     }
+
 
     @GetMapping(path = "/all")
     public @ResponseBody

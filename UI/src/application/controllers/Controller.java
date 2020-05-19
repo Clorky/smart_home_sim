@@ -1,4 +1,4 @@
-package application;
+package application.controllers;
 
 public interface Controller {
 

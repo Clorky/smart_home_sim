@@ -1,5 +1,6 @@
-package application;
+package application.warningSystems;
 
+import application.Main;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -23,7 +24,7 @@ import java.util.Optional;
 
 import static application.Main.checkServerConnection;
 
-public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to co se po nich spusti)
+public class Warning { //TODO: zkontrolovat vsechny warningy jestli jsou ok (to co se po nich spusti)
 
     private Alert alert;
     private Stage window;
@@ -34,7 +35,7 @@ public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to c
     public static StringProperty labelProperty = new SimpleStringProperty();
 
     public Warning(WarningType warningType) {
-        if(warningType == WarningType.SERVER_DOWN) {
+        if (warningType == WarningType.SERVER_DOWN) {
 
             label = new Label();
             label.setWrapText(true);
@@ -51,11 +52,11 @@ public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to c
             initServerDown();
 
             window.setOnCloseRequest(windowEvent -> { //konzumuje event na zavreni okna - okno se neda zavrit
-                if(!Main.serverOn) windowEvent.consume();
+                if (!Main.serverOn) windowEvent.consume();
             });
 
             Optional a = alert.showAndWait();
-            if(a.isPresent() && a.get() == appOffButton) {
+            if (a.isPresent() && a.get() == appOffButton) {
                 Main.running = false;
                 Platform.runLater(() -> {
                     Platform.exit();
@@ -63,22 +64,23 @@ public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to c
             }
 
         }
-        if(warningType == WarningType.INVALID_NAME) {
+        if (warningType == WarningType.INVALID_NAME) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Zadejte jiné jméno místnosti", ButtonType.OK);
             alert.getDialogPane().setMinWidth(200);
             alert.showAndWait();
         }
-        if(warningType == WarningType.ALREADY_USED) {
+        if (warningType == WarningType.ALREADY_USED) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Místnost nebyla přidána, protože její název už existuje", ButtonType.OK);
             alert.getDialogPane().setMinWidth(200);
             alert.showAndWait();
         }
     }
 
-    private void initServerDown() {
+    private synchronized void initServerDown() {
         Task task = new Task<Void>() {
-            @Override public Void call() {
-                while(!Main.serverOn && Main.running) {
+            @Override
+            public Void call() {
+                while (!Main.serverOn && Main.running) {
                     counter++;
                     Platform.runLater(() -> {
                         labelProperty.setValue("Retrying connection (" + counter + ")");
@@ -100,7 +102,7 @@ public class Warning{ //TODO: zkontrolovat vsechny warningy jestli jsou ok (to c
             }
         };
         new Thread(task, "init server down thread from Warning").start();
-}
+    }
 
     public enum WarningType {
         SERVER_DOWN, INVALID_NAME, ALREADY_USED
