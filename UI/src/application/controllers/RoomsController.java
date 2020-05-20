@@ -1,19 +1,25 @@
-package application;
+package application.controllers;
 
+import application.networking.JSONHandler;
+import application.Main;
+import application.warningSystems.Warning;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +62,12 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     public static boolean removingInProcess = false;
 
     @FXML
-    private void initialize() {
-
+    private synchronized void initialize() {
+        textAddTextField.textProperty().addListener( //max poƒçet znak≈Ø v texfield je 20
+                (observable,oldValue,newValue)-> {
+                    if(newValue.length() > 20) textAddTextField.setText(oldValue);
+                }
+        );
         listView.setOnMouseClicked(mouseEvent -> {
             currentlyChosenRoomName = listView.getSelectionModel().getSelectedItem();
             sensorPaneId.setVisible(true);
@@ -86,8 +96,9 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
         }
-        Main.serviceManager.addToControllerList(this);
+        Main.serviceManager.setController(this);
     }
+
 
     public boolean update() {
         if (currentlyChosenRoomName == null) return false;
@@ -100,36 +111,44 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
         return true;
     }
 
-    public void requestData() {
-
+    public synchronized void requestData() {
         if (currentlyChosenRoomName == null) return;
         try {
-            String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
 
+            String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
+//            System.out.println(jsonString);
             org.json.JSONObject obj = new org.json.JSONObject(jsonString);
             currentTemperature = Double.parseDouble(obj.get("temperature").toString());
             electricityUsage = Double.parseDouble(obj.get("currentConsumption").toString());
-            lightTime = Double.parseDouble(obj.get("lightsOnNumberInHours").toString());
+            lightTime = Double.parseDouble(obj.get("lightsOnNumberInSeconds").toString());
         } catch (Exception e) {
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
+            System.out.println(currentlyChosenRoomName);
             return;
         }
     }
 
-    public void addRoom() {
+    public synchronized void addRoom() { //mezerniky to shazuji
 
         String roomName = textAddTextField.getText(); //room name se odvodi z text fieldu z UI
 
-        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Pattern p = Pattern.compile("^[^ _]", Pattern.CASE_INSENSITIVE); //nen√≠ to ide√°ln√≠ ale funguje to
+        Pattern p2 = Pattern.compile("[^ _]$", Pattern.CASE_INSENSITIVE);
+        Pattern p3 = Pattern.compile("[^a-zA-Z0-9 _]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(roomName);
+        Matcher m2 = p2.matcher(roomName);
+        Matcher m3 = p3.matcher(roomName);
         boolean b = m.find();
+        boolean b2 = m2.find();
+        boolean b3 = m3.find();
 
-        if (roomName.trim().length() == 0 || b) {
+        if (!b || !b2 || b3) {
             System.out.println("not added");
             new Warning(Warning.WarningType.INVALID_NAME);
             return;
         }
+        roomName = roomName.replaceAll("\\s","_");
         for (String usedRoomName : usedRoomNames) {
             if (roomName.equals(usedRoomName)) {
                 new Warning(Warning.WarningType.ALREADY_USED);
@@ -145,6 +164,7 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
             return;
         }
         usedRoomNames.add(roomName);
+        System.out.println(roomName);
     }
 
     public void removeRoom() {
@@ -162,8 +182,11 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     }
 
     public void changeScreenStatistics(ActionEvent evt) throws IOException {
-        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("statistiky.fxml"));
+        if (!serverOn) {
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
+        }
+        Parent roomsViewParent = FXMLLoader.load(getClass().getResource("../UIResources/statistiky.fxml"));
         Scene roomsView = new Scene(roomsViewParent);
 
         Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();
@@ -173,8 +196,11 @@ public class RoomsController implements Controller { //TODO: refactor a chyt√°n√
     }
 
     public void goBack(ActionEvent evt) throws IOException {
-        if (!serverOn) new Warning(Warning.WarningType.SERVER_DOWN);
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("mainHub.fxml"));
+        if (!serverOn) {
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return;
+        }
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("../UIResources/mainHub.fxml"));
         Scene mainView = new Scene(mainViewParent);
 
         Stage window = (Stage) ((Node) evt.getSource()).getScene().getWindow();

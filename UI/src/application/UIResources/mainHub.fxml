@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.MainHubController">
+<BorderPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainHubController">
    <top>
       <HBox prefHeight="184.0" prefWidth="900.0">
          <children>
@@ -50,28 +51,44 @@
    <bottom>
       <HBox fx:id="sliderEnabler" alignment="CENTER" prefHeight="216.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="209.0" prefWidth="512.0">
+            <VBox alignment="CENTER" prefHeight="216.0" prefWidth="700.0">
                <children>
-                  <JFXSlider fx:id="slider" blockIncrement="1.0" max="27.0" min="16.0" onMouseDragged="#increment" prefHeight="15.0" prefWidth="230.0" showTickLabels="true" value="21.5">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXSlider>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="buttonDecrement" minWidth="42.0" mnemonicParsing="false" onAction="#decrement" prefHeight="44.0" prefWidth="70.0" text="-">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="3.14" />
+                           </HBox.margin>
+                        </Button>
+                        <JFXSlider fx:id="slider" blockIncrement="0.5" majorTickUnit="0.5" max="27.0" min="16.0" minorTickCount="0" onMouseReleased="#changeValue" prefHeight="31.0" prefWidth="680.0" showTickLabels="false" snapToTicks="true" stylesheets="@slider.css" value="21.5" />
+                        <Button fx:id="buttonIncrement" mnemonicParsing="false" onAction="#increment" prefHeight="44.0" prefWidth="42.0" text="+">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="3.14" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                   <Label text="Požadovaná globální teplota">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <HBox prefWidth="512.0">
+                  <HBox alignment="CENTER" prefWidth="512.0">
                      <children>
                         <HBox prefWidth="256.0">
                            <children>
                               <Label fx:id="temp_c" text="temp_C">
                                  <font>
-                                    <Font size="28.0" />
+                                    <Font size="34.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="50.0" top="5.0" />
@@ -86,7 +103,7 @@
                            <children>
                               <Label prefHeight="81.0" prefWidth="256.0" text="Bylo nutno zapnout &#10;vytápění %dny za poslední rok.&#10;">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="18.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets top="20.0" />

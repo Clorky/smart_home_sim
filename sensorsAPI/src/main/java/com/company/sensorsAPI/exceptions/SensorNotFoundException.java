@@ -1,7 +1,7 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.exceptions;
 
 public class SensorNotFoundException extends RuntimeException{
-    SensorNotFoundException(String name){
+    public SensorNotFoundException(String name){
         super("Could not find sensor named: " + name);
     }
 }

@@ -1,4 +1,4 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.entities;
 
 import org.hibernate.annotations.Type;
 
@@ -13,7 +13,7 @@ public class Sensor{
     @GeneratedValue(strategy = GenerationType.AUTO) //TODO: primary key a foreign key z room (Room room)
     @Column(name = "sensor_id")
     private Integer id;
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     private Room room;
     private String sensorName;
     @Type(type="yes_no")
@@ -21,8 +21,8 @@ public class Sensor{
     private double requestedTemp;
     private double temperature;
     private double currentConsumption;
-    private double lightsOnNumberInHours;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor")
+    private double lightsOnNumberInSeconds;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor", orphanRemoval = true)
     List<StatisticsData> statistics = new ArrayList<StatisticsData>();
 
     private void test(){
@@ -32,23 +32,23 @@ public class Sensor{
 
     }
 
-    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean heated, double requestedTemp, Room room) {
+    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInSeconds, String sensorName, boolean heated, double requestedTemp, Room room) {
         this.requestedTemp = requestedTemp;
         this.heated = heated;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInHours = lightsOnNumberInHours;
+        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
         this.sensorName = sensorName;
         this.room = room;
     }
 
-    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInHours, String sensorName, boolean heated, double requestedTemp) {
+    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInSeconds, String sensorName, boolean heated, double requestedTemp) {
         this.id = id;
         this.heated = heated;
         this.requestedTemp = requestedTemp;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInHours = lightsOnNumberInHours;
+        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
         this.sensorName = sensorName;
     }
 
@@ -60,8 +60,8 @@ public class Sensor{
         return currentConsumption;
     }
 
-    public double getLightsOnNumberInHours() {
-        return lightsOnNumberInHours;
+    public double getLightsOnNumberInSeconds() {
+        return lightsOnNumberInSeconds;
     }
 
     public Integer getId() {
@@ -80,8 +80,8 @@ public class Sensor{
         this.currentConsumption = currentConsumption;
     }
 
-    public void setLightsOnNumberInHours(double lightsOnNumberInHours) {
-        this.lightsOnNumberInHours = lightsOnNumberInHours;
+    public void setLightsOnNumberInSeconds(double lightsOnNumberInSeconds) {
+        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
     }
     public String getSensorName() {
         return sensorName;

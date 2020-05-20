@@ -1,14 +1,16 @@
-package com.company.sensorsAPI;
+package com.company.sensorsAPI.controllers;
 
+import com.company.sensorsAPI.entities.Sensor;
+import com.company.sensorsAPI.entities.StatisticsData;
+import com.company.sensorsAPI.exceptions.SensorNotFoundException;
+import com.company.sensorsAPI.repositories.SensorRepository;
+import com.company.sensorsAPI.repositories.StatisticsDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 @Controller
 @RequestMapping(path = "/sensors")
 
@@ -64,7 +66,7 @@ public class SensorController {
         return sensorRepository.findById(id)
                 .map(sensor -> {
                     sensor.setTemperature(updatedSensor.getTemperature());
-                    sensor.setLightsOnNumberInHours(updatedSensor.getLightsOnNumberInHours());
+                    sensor.setLightsOnNumberInSeconds(updatedSensor.getLightsOnNumberInSeconds());
                     sensor.setCurrentConsumption(updatedSensor.getCurrentConsumption());
                     sensor.setRequestedTemp(updatedSensor.getRequestedTemp());
                     sensor.setHeated(updatedSensor.isHeated());
@@ -83,7 +85,7 @@ public class SensorController {
         Iterable<Sensor> sensors = sensorRepository.findAll();
         for (Sensor s : sensors) {
             statisticsDataRepository.save(new StatisticsData(s.getSensorName(), s.getTemperature(),
-                    s.getCurrentConsumption(), s.getLightsOnNumberInHours(), s.isHeated(), s));
+                    s.getCurrentConsumption(), s.getLightsOnNumberInSeconds(), s.isHeated(), s));
         }
         return sensors;
     }
