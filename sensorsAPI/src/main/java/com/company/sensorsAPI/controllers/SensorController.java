@@ -66,7 +66,7 @@ public class SensorController {
         return sensorRepository.findById(id)
                 .map(sensor -> {
                     sensor.setTemperature(updatedSensor.getTemperature());
-                    sensor.setLightsOnNumberInHours(updatedSensor.getLightsOnNumberInHours());
+                    sensor.setLightsOnNumberInSeconds(updatedSensor.getLightsOnNumberInSeconds());
                     sensor.setCurrentConsumption(updatedSensor.getCurrentConsumption());
                     sensor.setRequestedTemp(updatedSensor.getRequestedTemp());
                     sensor.setHeated(updatedSensor.isHeated());
@@ -85,7 +85,7 @@ public class SensorController {
         Iterable<Sensor> sensors = sensorRepository.findAll();
         for (Sensor s : sensors) {
             statisticsDataRepository.save(new StatisticsData(s.getSensorName(), s.getTemperature(),
-                    s.getCurrentConsumption(), s.getLightsOnNumberInHours(), s.isHeated(), s));
+                    s.getCurrentConsumption(), s.getLightsOnNumberInSeconds(), s.isHeated(), s));
         }
         return sensors;
     }

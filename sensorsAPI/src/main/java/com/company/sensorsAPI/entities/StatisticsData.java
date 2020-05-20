@@ -1,6 +1,5 @@
 package com.company.sensorsAPI.entities;
 
-import com.company.sensorsAPI.entities.Sensor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
@@ -19,7 +18,7 @@ public class StatisticsData {
     private String sensorName;
     private double temperature;
     private double currentConsumption;
-    private double lightsOnNumberInHours;
+    private double lightsOnNumberInSeconds;
     @Type(type="yes_no")
     private boolean wasHeated;
     @CreationTimestamp
@@ -28,11 +27,11 @@ public class StatisticsData {
     public StatisticsData() {
     }
 
-    public StatisticsData(String sensorName, double temperature, double currentConsumption, double lightsOnNumberInHours, boolean wasHeated, Sensor sensor){
+    public StatisticsData(String sensorName, double temperature, double currentConsumption, double lightsOnNumberInSeconds, boolean wasHeated, Sensor sensor){
         this.sensorName = sensorName;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInHours = lightsOnNumberInHours;
+        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
         this.wasHeated = wasHeated;
         this.sensor = sensor;
 
@@ -62,12 +61,12 @@ public class StatisticsData {
         this.currentConsumption = currentConsumption;
     }
 
-    public double getLightsOnNumberInHours() {
-        return lightsOnNumberInHours;
+    public double getLightsOnNumberInSeconds() {
+        return lightsOnNumberInSeconds;
     }
 
-    public void setLightsOnNumberInHours(double lightsOnNumberInHours) {
-        this.lightsOnNumberInHours = lightsOnNumberInHours;
+    public void setLightsOnNumberInSeconds(double lightsOnNumberInSeconds) {
+        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
     }
 
     public String getSensorName() {
@@ -92,6 +91,14 @@ public class StatisticsData {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }
 

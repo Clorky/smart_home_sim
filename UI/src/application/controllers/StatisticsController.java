@@ -1,7 +1,6 @@
 package application.controllers;
 
 import application.Main;
-import application.ServiceManager;
 import application.networking.JSONHandler;
 import application.warningSystems.Warning;
 import javafx.event.ActionEvent;
@@ -10,8 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,7 +18,9 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static application.Main.serverOn;
 
@@ -29,20 +30,28 @@ public class StatisticsController implements Controller {
     private ListView<String> roomsListView;
     @FXML
     private ListView<String> monthsListView;
+    @FXML
+    private Label numDaysHeaterOnLabel;
+    @FXML
+    private Label numAverageTimeLightsOn;
+    @FXML
+    private Label numFullPowerConsInKwh;
 
     private String[] months = {"Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"};
-    private List<String> roomNames = new ArrayList<>();
+    private Map<String, Integer> roomNamesIDs = new HashMap<>();
     private String currentlyChosenMonth = "Leden";
     private String currentlyChosenRoomName = null;
-    private boolean listViewSet;
+    private boolean updated;
     private boolean dataRequested;
+
+    HashMap<String, HashMap<String, List<Double>>> formattedStatisticsData = new HashMap<>();
 
     //statistické hodnoty se vypočítají na serveru a pošlou se zpracované
 
     @FXML
     private synchronized void initialize() {  //TODO: usedRoomNames z roomsController se naplní až při spuštění metody initialize() dané třídy
 
-        listViewSet = false;
+        updated = false;
         dataRequested = false;
 
         for (int i = 0; i < months.length; i++) {
@@ -63,11 +72,18 @@ public class StatisticsController implements Controller {
     @Override
     public boolean update() {
 
-        if(!listViewSet) {
-            for (int i = 0; i < roomNames.size(); i++) {
-                roomsListView.getItems().add(i, roomNames.get(i));
+        if(!updated) {
+            int counter = 0;
+            for (String s : roomNamesIDs.keySet()) {
+                roomsListView.getItems().add(counter, s);
+                counter++;
             }
-            listViewSet = true;
+            updated = true;
+        }
+
+        if(currentlyChosenRoomName != null) {
+            numAverageTimeLightsOn.setText(formattedStatisticsData.get(currentlyChosenMonth)
+                    .get(currentlyChosenRoomName).get(1).toString()); //TODO: dodělat ostatní labely a naplnit databázi + naformátovat data
         }
 
         return true;
@@ -86,13 +102,47 @@ public class StatisticsController implements Controller {
 
                 for (int i = 0; i < arr.size(); i++) {
                     JSONObject jsob = (JSONObject) arr.get(i);
-                    roomNames.add(jsob.get("name").toString());
+                    roomNamesIDs.put(jsob.get("name").toString(), Integer.parseInt(jsob.get("id").toString()));
                 }
                 dataRequested = true;
             } catch (Exception e) {
                 Main.serverOn = false;
                 new Warning(Warning.WarningType.SERVER_DOWN);
                 dataRequested = false;
+            }
+
+            try {
+                String statisticsData = JSONHandler.get("http://localhost:8080/statistics_data/all");
+
+                org.json.JSONObject jsonData = new org.json.JSONObject(statisticsData);
+
+                for (String month : months) {
+
+                    org.json.JSONObject obj = new org.json.JSONObject(jsonData.get(month).toString());
+
+                    HashMap<String, List<Double>> values = new HashMap<>();
+
+                    for (String s : roomNamesIDs.keySet()) {
+
+                        ArrayList<Double> sensorValues = new ArrayList<>();
+
+                        org.json.JSONArray arr = new org.json.JSONArray(obj.get(s).toString());
+
+                        for (int i = 0; i < 3; i++) {
+                            sensorValues.add(Double.parseDouble(arr.get(i).toString()));
+                        }
+
+                        values.put(s, sensorValues);
+                    }
+
+                    formattedStatisticsData.put(month, values);
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Main.serverOn = false;
+                new Warning(Warning.WarningType.SERVER_DOWN);
             }
         }
     }

@@ -20,7 +20,7 @@ public class SensorSimulation implements Runnable{
     public SensorSimulation() {
         sensors = new ArrayList<>();
     }
-    private final int waitTime = 5000;
+    public static final int WAIT_TIME = 5000;
     private Random random = new Random();
     private double elect, light;
     private final double TEMPERATURE_CONST = 0.1;
@@ -48,12 +48,12 @@ public class SensorSimulation implements Runnable{
                             String id = jsob.get("id").toString();
                             String temperatureJSON = jsob.get("temperature").toString();
                             String currentConsJSON = jsob.get("currentConsumption").toString();
-                            String lightsOnNumberInHoursJSON = jsob.get("lightsOnNumberInHours").toString();
+                            String lightsOnNumberInSecondsJSON = jsob.get("lightsOnNumberInSeconds").toString();
                             String sensorNameJSON = jsob.get("sensorName").toString();
                             String isHeatedJSON = jsob.get("heated").toString();
                             String requestedTemp = jsob.get("requestedTemp").toString();
                             Sensor sensorFromJSON = new Sensor(Integer.parseInt(id), Double.parseDouble(temperatureJSON),
-                                    Double.parseDouble(currentConsJSON), Double.parseDouble(lightsOnNumberInHoursJSON),
+                                    Double.parseDouble(currentConsJSON), Double.parseDouble(lightsOnNumberInSecondsJSON),
                                     sensorNameJSON, Boolean.parseBoolean(isHeatedJSON), Double.parseDouble(requestedTemp));
                             sensors.add(sensorFromJSON);
                         }
@@ -64,7 +64,7 @@ public class SensorSimulation implements Runnable{
                     for (Sensor sensor : sensors) {
 
                         elect = random.nextInt(500 - 300) + 300;
-                        light = random.nextInt(24);
+                        light = random.nextInt(WAIT_TIME/1000 + 1);
 
                         if (sensor.getTemperature() <= sensor.getRequestedTemp()) {
                             sensor.setHeated(true);
@@ -81,14 +81,15 @@ public class SensorSimulation implements Runnable{
                         }
 
                         sensor.setCurrentConsumption(elect);
-                        sensor.setLightsOnNumberInHours(light);
+                        sensor.setLightsOnNumberInSeconds(light);
 
                         try {
                             JSONHandler.post("http://localhost:8080/sensors/update/" + sensor.getId(), "{\"id\"" +
                                     ": " + sensor.getId() + ", \"temperature\": " + sensor.getTemperature() + ", \"currentConsumption\": " + elect +
-                                    ", \"lightsOnNumberInHours\": " + light + ", \"heated\": " + sensor.isHeated() +
+                                    ", \"lightsOnNumberInSeconds\": " + light + ", \"heated\": " + sensor.isHeated() +
                                     ", \"requestedTemp\": " + sensor.getRequestedTemp() + "}");
                         } catch (IOException e) {
+                            System.out.println("problem is here");
                             e.printStackTrace();
                         }
                     }
@@ -101,7 +102,7 @@ public class SensorSimulation implements Runnable{
 
     private void waitTime(){
         try{
-            Thread.sleep(waitTime);
+            Thread.sleep(WAIT_TIME);
         }catch(InterruptedException e){
             e.printStackTrace();
         }

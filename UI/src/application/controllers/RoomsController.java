@@ -5,12 +5,14 @@ import application.Main;
 import application.warningSystems.Warning;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -61,7 +63,11 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
 
     @FXML
     private synchronized void initialize() {
-
+        textAddTextField.textProperty().addListener( //max počet znaků v texfield je 20
+                (observable,oldValue,newValue)-> {
+                    if(newValue.length() > 20) textAddTextField.setText(oldValue);
+                }
+        );
         listView.setOnMouseClicked(mouseEvent -> {
             currentlyChosenRoomName = listView.getSelectionModel().getSelectedItem();
             sensorPaneId.setVisible(true);
@@ -93,6 +99,7 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
         Main.serviceManager.setController(this);
     }
 
+
     public boolean update() {
         if (currentlyChosenRoomName == null) return false;
         Platform.runLater(() -> {
@@ -105,16 +112,15 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
     }
 
     public synchronized void requestData() {
-
         if (currentlyChosenRoomName == null) return;
         try {
 
             String jsonString = JSONHandler.get("http://localhost:8080/sensors/sensor/" + currentlyChosenRoomName + "_sensor");
-            System.out.println(jsonString);
+//            System.out.println(jsonString);
             org.json.JSONObject obj = new org.json.JSONObject(jsonString);
             currentTemperature = Double.parseDouble(obj.get("temperature").toString());
             electricityUsage = Double.parseDouble(obj.get("currentConsumption").toString());
-            lightTime = Double.parseDouble(obj.get("lightsOnNumberInHours").toString());
+            lightTime = Double.parseDouble(obj.get("lightsOnNumberInSeconds").toString());
         } catch (Exception e) {
             Main.serverOn = false;
             new Warning(Warning.WarningType.SERVER_DOWN);
@@ -127,15 +133,22 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
 
         String roomName = textAddTextField.getText(); //room name se odvodi z text fieldu z UI
 
-        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Pattern p = Pattern.compile("^[^ _]", Pattern.CASE_INSENSITIVE); //není to ideální ale funguje to
+        Pattern p2 = Pattern.compile("[^ _]$", Pattern.CASE_INSENSITIVE);
+        Pattern p3 = Pattern.compile("[^a-zA-Z0-9 _]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(roomName);
+        Matcher m2 = p2.matcher(roomName);
+        Matcher m3 = p3.matcher(roomName);
         boolean b = m.find();
+        boolean b2 = m2.find();
+        boolean b3 = m3.find();
 
-        if (roomName.trim().length() == 0 || b) {
+        if (!b || !b2 || b3) {
             System.out.println("not added");
             new Warning(Warning.WarningType.INVALID_NAME);
             return;
         }
+        roomName = roomName.replaceAll("\\s","_");
         for (String usedRoomName : usedRoomNames) {
             if (roomName.equals(usedRoomName)) {
                 new Warning(Warning.WarningType.ALREADY_USED);
@@ -151,6 +164,7 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
             return;
         }
         usedRoomNames.add(roomName);
+        System.out.println(roomName);
     }
 
     public void removeRoom() {
