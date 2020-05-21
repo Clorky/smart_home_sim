@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="754.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.controllers.RoomsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RoomsController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="573.0" prefWidth="189.0" BorderPane.alignment="CENTER">
          <children>
@@ -126,7 +126,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
                            <children>
-                              <Label fx:id="lightsOnTimeLabel" alignment="CENTER" text="lightsOnTime" textAlignment="CENTER" />
+                              <Label fx:id="powerConsumptionAtmLabel" alignment="CENTER" text="powerConsumptionAtm" textAlignment="CENTER" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
@@ -136,7 +136,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
                            <children>
-                              <Label fx:id="powerConsumptionAtmLabel" alignment="CENTER" text="powerConsumptionAtm" textAlignment="CENTER" />
+                              <Label fx:id="lightsOnTimeLabel" alignment="CENTER" text="lightsOnTime" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </children>

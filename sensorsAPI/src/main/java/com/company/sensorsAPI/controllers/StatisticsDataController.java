@@ -32,6 +32,19 @@ public class StatisticsDataController {
 
     private String[] months = {"Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"};
 
+    @GetMapping(path = "/heatingInYear")
+    public @ResponseBody
+    double getHeatingInYear() {
+
+        double ret = 0;
+
+        for (StatisticsData statisticsData : statisticsDataRepository.findAll()) {
+            ret += statisticsData.getLightsOnNumberInSeconds();
+        }
+
+        return ret / 86400;
+    }
+
     @GetMapping(path = "/all")
     public @ResponseBody
     HashMap<String, HashMap<String, List<Double>>> getStatisticsData() {
@@ -55,8 +68,8 @@ public class StatisticsDataController {
 
                     double millisecondsInYearHeatingOn = 0.0;
 
-                    double lightOnMeanInHours = 0.0;
-                    double lightTimeInHours = 0;
+                    double lightOnMeanInSeconds = 0.0;
+                    double lightTimeInSeconds = 0;
                     int numOfData = 0;
 
                     double totalEnergyConsumption = 0.0;
@@ -73,7 +86,7 @@ public class StatisticsDataController {
                                     if(monthNumber == i) {
 
                                         if(statisticsData.isWasHeated()) millisecondsInYearHeatingOn += SensorSimulation.WAIT_TIME;
-                                        lightTimeInHours += statisticsData.getLightsOnNumberInSeconds();
+                                        lightTimeInSeconds += statisticsData.getLightsOnNumberInSeconds();
                                         totalEnergyConsumption += statisticsData.getCurrentConsumption();
                                         numOfData++;
 
@@ -84,10 +97,13 @@ public class StatisticsDataController {
                     }
 
                     double days = millisecondsInYearHeatingOn / 86400000;
-                    lightOnMeanInHours = lightTimeInHours / numOfData;
+                    lightOnMeanInSeconds = lightTimeInSeconds; // numOfData;
+                    double lightOnMeanInHours = lightOnMeanInSeconds / 3600;
+
+                    double x = (lightTimeInSeconds / numOfData);
 
                     values.add(days);
-                    values.add(lightOnMeanInHours);
+                    values.add(x);
                     values.add(totalEnergyConsumption);
 
                     roomsData.put(roomName, values);

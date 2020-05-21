@@ -16,7 +16,8 @@ public class Main extends Application { //TODO: Statistiky, testy, diagramy :)
     public static boolean serverOn = true;
     public static boolean running = true;
     public static ServiceManager serviceManager = new ServiceManager();
-    public static DecimalFormat df = new DecimalFormat("#.0");
+    public static DecimalFormat df = new DecimalFormat("#0.0");
+    public static DecimalFormat dfW = new DecimalFormat("#0.00000");
 
     @Override
     public void start(Stage primaryStage) throws Exception{

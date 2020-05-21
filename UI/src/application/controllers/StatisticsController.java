@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static application.Main.serverOn;
+import static application.Main.*;
 
 public class StatisticsController implements Controller {
 
@@ -66,6 +66,7 @@ public class StatisticsController implements Controller {
             currentlyChosenRoomName = roomsListView.getSelectionModel().getSelectedItem();
         });
 
+        monthsListView.getSelectionModel().select(0);
         Main.serviceManager.setController(this);
     }
 
@@ -81,9 +82,23 @@ public class StatisticsController implements Controller {
             updated = true;
         }
 
-        if(currentlyChosenRoomName != null) {
-            numAverageTimeLightsOn.setText(formattedStatisticsData.get(currentlyChosenMonth)
-                    .get(currentlyChosenRoomName).get(1).toString()); //TODO: dodělat ostatní labely a naplnit databázi + naformátovat data
+        if(currentlyChosenRoomName != null) { //TODO: dodělat ostatní labely a naplnit databázi + naformátovat data
+
+            double numHeating = Double.parseDouble(formattedStatisticsData.get(currentlyChosenMonth).get(currentlyChosenRoomName).get(0).toString());
+            String textHeating = dfW.format(numHeating);
+//            if(numHeating < 1) textHeating = "< 1";
+            numDaysHeaterOnLabel.setText(textHeating + " days");
+
+            double numLightning = Double.parseDouble(formattedStatisticsData.get(currentlyChosenMonth).get(currentlyChosenRoomName).get(1).toString());
+            String textLightning = dfW.format(numLightning);
+//            if(numLightning < 1) textLightning = "< 1";
+            numAverageTimeLightsOn.setText(textLightning + " hours");
+
+            double numPower = Double.parseDouble(formattedStatisticsData.get(currentlyChosenMonth).get(currentlyChosenRoomName).get(2).toString());
+            double temp = numPower / 100;
+            String textPower = dfW.format(temp);
+            //if(numPower < 1) textPower = "< 1";
+            numFullPowerConsInKwh.setText(textPower + " kW");
         }
 
         return true;
@@ -113,7 +128,7 @@ public class StatisticsController implements Controller {
 
             try {
                 String statisticsData = JSONHandler.get("http://localhost:8080/statistics_data/all");
-
+                System.out.println(statisticsData);
                 org.json.JSONObject jsonData = new org.json.JSONObject(statisticsData);
 
                 for (String month : months) {

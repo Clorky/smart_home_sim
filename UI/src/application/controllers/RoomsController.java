@@ -105,8 +105,8 @@ public class RoomsController implements Controller { //TODO: refactor a chytán�
         Platform.runLater(() -> {
             sensorNameLabel.setText(currentlyChosenRoomName + "_sensor");
             temperatureLabel.setText(Main.df.format(currentTemperature) + " °C");
-            powerConsumptionAtmLabel.setText(Main.df.format(electricityUsage) + " W");
-            lightsOnTimeLabel.setText(Main.df.format(lightTime) + " hodin");
+            powerConsumptionAtmLabel.setText(Main.dfW.format(electricityUsage) + " mW za posledních 5 sekund");
+            lightsOnTimeLabel.setText(Main.df.format(lightTime) + " sekund");
         });
         return true;
     }

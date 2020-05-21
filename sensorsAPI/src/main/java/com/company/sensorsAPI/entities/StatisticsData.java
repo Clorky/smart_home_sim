@@ -19,7 +19,6 @@ public class StatisticsData {
     private double temperature;
     private double currentConsumption;
     private double lightsOnNumberInSeconds;
-    @Type(type="yes_no")
     private boolean wasHeated;
     @CreationTimestamp
     private Timestamp timestamp;

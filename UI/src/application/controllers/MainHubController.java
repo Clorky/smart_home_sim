@@ -12,9 +12,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import static application.Main.df;
 import static application.Main.serverOn;
 
 public class MainHubController implements Controller {
@@ -22,8 +29,13 @@ public class MainHubController implements Controller {
     private JFXSlider slider;
     @FXML
     private Label temp_c;
+    @FXML
+    private Label daysHubLabel;
 
     private double lastGlobalTemp = 21.5;
+
+    double days = 0;
+    private boolean dataRequested = false;
 
     @FXML
     private synchronized void initialize() {
@@ -34,7 +46,7 @@ public class MainHubController implements Controller {
         } catch (Exception e) {
             serverOn = false;
         }
-        String formattedTemp = Main.df.format(lastGlobalTemp);
+        String formattedTemp = df.format(lastGlobalTemp);
         temp_c.setText(formattedTemp + " °C");
         slider.setMajorTickUnit(0.5);
         slider.setMinorTickCount(0);
@@ -43,16 +55,36 @@ public class MainHubController implements Controller {
         slider.setValue(lastGlobalTemp);
         if (!serverOn) slider.setDisable(true);
         slider.setDisable(false);
+        Main.serviceManager.setController(this);
     }
 
     @Override
     public boolean update() {  //TODO: topeni bylo treba zapnout % dni v roce - bude v update a request data
-        return false;
+
+            String text = df.format(days);
+            if (days < 1) {
+                text = "< 1";
+            }
+            daysHubLabel.setText("Bylo nutno zapnout\nvytápění " + text + " dny za poslední rok.");
+
+        return true;
     }
 
     @Override
-    public void requestData() {
+    public synchronized void requestData() {
+        System.out.println(dataRequested);
+        if(!dataRequested) {
+            System.out.println("called in");
+            try {
+                String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data/heatingInYear");
 
+                days = Double.parseDouble(daysHeatingInYear);
+            } catch (Exception e) {
+                serverOn = false;
+                new Warning(Warning.WarningType.SERVER_DOWN);
+            }
+            dataRequested = true;
+        }
     }
 
     @FXML

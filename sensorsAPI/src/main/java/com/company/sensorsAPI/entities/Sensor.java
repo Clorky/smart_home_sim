@@ -16,11 +16,11 @@ public class Sensor{
     @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     private Room room;
     private String sensorName;
-    @Type(type="yes_no")
     private boolean heated;
     private double requestedTemp;
     private double temperature;
     private double currentConsumption;
+    private double lightsOnTotalPerWeek;
     private double lightsOnNumberInSeconds;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor", orphanRemoval = true)
     List<StatisticsData> statistics = new ArrayList<StatisticsData>();
@@ -112,5 +112,13 @@ public class Sensor{
 
     public void setHeated(boolean heated) {
         this.heated = heated;
+    }
+
+    public double getLightsOnTotalPerWeek() {
+        return lightsOnTotalPerWeek;
+    }
+
+    public void setLightsOnTotalPerWeek(double lightsOnTotalPerWeek) {
+        this.lightsOnTotalPerWeek = lightsOnTotalPerWeek;
     }
 }

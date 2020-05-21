@@ -99,9 +99,9 @@
                               <Insets top="20.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox prefHeight="50.0" prefWidth="256.0">
+                        <HBox prefHeight="75.0" prefWidth="301.0">
                            <children>
-                              <Label prefHeight="81.0" prefWidth="256.0" text="Bylo nutno zapnout &#10;vytápění %dny za poslední rok.&#10;">
+                              <Label fx:id="daysHubLabel" prefHeight="55.0" prefWidth="305.0" text="Bylo nutno zapnout vytápění %dny za poslední rok.&#10;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

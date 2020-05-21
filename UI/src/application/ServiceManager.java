@@ -19,7 +19,6 @@ public class ServiceManager extends Task {
 
     @Override
     protected Object call() throws Exception {
-
         while (Main.running || removalInProcess) {
             synchronized (this) {
 

@@ -63,7 +63,7 @@ public class SensorSimulation implements Runnable{
 
                     for (Sensor sensor : sensors) {
 
-                        elect = random.nextInt(500 - 300) + 300;
+                        elect = 0.0 + (2.25347222 - 0.0) * random.nextDouble();
                         light = random.nextInt(WAIT_TIME/1000 + 1);
 
                         if (sensor.getTemperature() <= sensor.getRequestedTemp()) {
