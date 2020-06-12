@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class JSONHandler {
 
@@ -21,27 +22,22 @@ public class JSONHandler {
         }
         rd.close();
 
-//        JSONObject jObj = new JSONObject(result);
-//        System.out.println("--------------------------------------");
-//        System.out.println(jObj.get("name"));
-//        System.out.println("--------------------------------------");
-
         return result.toString();
     }
 
     public static void post(String urlPath, String body) throws IOException {
-        URL url = new URL (urlPath);
-        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        URL url = new URL(urlPath);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
         con.setRequestProperty("Accept", "application/json");
         con.setDoOutput(true);
-        try(OutputStream os = con.getOutputStream()) {
-            byte[] input = body.getBytes("utf-8");
+        try (OutputStream os = con.getOutputStream()) {
+            byte[] input = body.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
-        try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {

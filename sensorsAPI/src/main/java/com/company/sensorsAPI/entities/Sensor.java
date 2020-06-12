@@ -1,54 +1,48 @@
 package com.company.sensorsAPI.entities;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Sensor{
+public class Sensor {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensor", orphanRemoval = true)
+    List<StatisticsData> statistics = new ArrayList<StatisticsData>();
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //TODO: primary key a foreign key z room (Room room)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sensor_id")
     private Integer id;
     @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     private Room room;
     private String sensorName;
-    @Type(type="yes_no")
     private boolean heated;
     private double requestedTemp;
     private double temperature;
     private double currentConsumption;
-    private double lightsOnNumberInSeconds;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="sensor", orphanRemoval = true)
-    List<StatisticsData> statistics = new ArrayList<StatisticsData>();
+    private boolean lightsOn;
 
-    private void test(){
-    }
-
-    public Sensor(){
+    public Sensor() {
 
     }
 
-    public Sensor(double temperature, double currentConsumption, double lightsOnNumberInSeconds, String sensorName, boolean heated, double requestedTemp, Room room) {
+    public Sensor(double temperature, double currentConsumption, boolean lightsOn, String sensorName, boolean heated, double requestedTemp, Room room) {
         this.requestedTemp = requestedTemp;
         this.heated = heated;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
+        this.lightsOn = lightsOn;
         this.sensorName = sensorName;
         this.room = room;
     }
 
-    public Sensor(Integer id, double temperature, double currentConsumption, double lightsOnNumberInSeconds, String sensorName, boolean heated, double requestedTemp) {
+    public Sensor(Integer id, double temperature, double currentConsumption, boolean lightsOn, String sensorName, boolean heated, double requestedTemp) {
         this.id = id;
         this.heated = heated;
         this.requestedTemp = requestedTemp;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
+        this.lightsOn = lightsOn;
         this.sensorName = sensorName;
     }
 
@@ -56,12 +50,20 @@ public class Sensor{
         return temperature;
     }
 
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+
     public double getCurrentConsumption() {
         return currentConsumption;
     }
 
-    public double getLightsOnNumberInSeconds() {
-        return lightsOnNumberInSeconds;
+    public void setCurrentConsumption(double currentConsumption) {
+        this.currentConsumption = currentConsumption;
+    }
+
+    public boolean getlightsOn() {
+        return lightsOn;
     }
 
     public Integer getId() {
@@ -72,17 +74,10 @@ public class Sensor{
         this.id = id;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public void setlightsOn(boolean lightsOn) {
+        this.lightsOn = lightsOn;
     }
 
-    public void setCurrentConsumption(double currentConsumption) {
-        this.currentConsumption = currentConsumption;
-    }
-
-    public void setLightsOnNumberInSeconds(double lightsOnNumberInSeconds) {
-        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
-    }
     public String getSensorName() {
         return sensorName;
     }
@@ -103,14 +98,15 @@ public class Sensor{
         return this.heated;
     }
 
+    public void setHeated(boolean heated) {
+        this.heated = heated;
+    }
+
     public Room getRoom() {
         return room;
     }
+
     public void setRoom(Room room) {
         this.room = room;
-    }
-
-    public void setHeated(boolean heated) {
-        this.heated = heated;
     }
 }

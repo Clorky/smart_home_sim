@@ -1,7 +1,6 @@
 package com.company.sensorsAPI.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,13 +12,12 @@ public class StatisticsData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer statistics_id;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name="sensor_fk")
+    @JoinColumn(name = "sensor_fk")
     private Sensor sensor;
     private String sensorName;
     private double temperature;
     private double currentConsumption;
-    private double lightsOnNumberInSeconds;
-    @Type(type="yes_no")
+    private boolean lightsOn;
     private boolean wasHeated;
     @CreationTimestamp
     private Timestamp timestamp;
@@ -27,13 +25,24 @@ public class StatisticsData {
     public StatisticsData() {
     }
 
-    public StatisticsData(String sensorName, double temperature, double currentConsumption, double lightsOnNumberInSeconds, boolean wasHeated, Sensor sensor){
+    public StatisticsData(String sensorName, double temperature, double currentConsumption, boolean lightsOn, boolean wasHeated, Sensor sensor) {
         this.sensorName = sensorName;
         this.temperature = temperature;
         this.currentConsumption = currentConsumption;
-        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
+        this.lightsOn = lightsOn;
         this.wasHeated = wasHeated;
         this.sensor = sensor;
+
+    }
+
+    public StatisticsData(String sensorName, double temperature, Timestamp timestamp, double currentConsumption, boolean lightsOn, boolean wasHeated, Sensor sensor) {
+        this.sensorName = sensorName;
+        this.temperature = temperature;
+        this.currentConsumption = currentConsumption;
+        this.lightsOn = lightsOn;
+        this.wasHeated = wasHeated;
+        this.sensor = sensor;
+        this.timestamp = timestamp;
 
     }
 
@@ -61,12 +70,12 @@ public class StatisticsData {
         this.currentConsumption = currentConsumption;
     }
 
-    public double getLightsOnNumberInSeconds() {
-        return lightsOnNumberInSeconds;
+    public boolean getlightsOn() {
+        return lightsOn;
     }
 
-    public void setLightsOnNumberInSeconds(double lightsOnNumberInSeconds) {
-        this.lightsOnNumberInSeconds = lightsOnNumberInSeconds;
+    public void setlightsOn(boolean lightsOn) {
+        this.lightsOn = lightsOn;
     }
 
     public String getSensorName() {

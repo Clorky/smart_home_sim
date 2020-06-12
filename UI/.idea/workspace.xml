@@ -2,16 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="088ab251-dc08-4588-8b1b-9f1174853576" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/ServiceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/UIResources/mainHub.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/mainHub.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/UIResources/mistnosti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/mistnosti.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/UIResources/slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/slider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/UIResources/statistiky.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/statistiky.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/controllers/MainHubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/MainHubController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/controllers/RoomsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/RoomsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/controllers/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/StatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/networking/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/networking/JSONHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/warningSystems/Warning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/warningSystem/Warning.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/SensorSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/SensorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/SensorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/StatisticsDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/StatisticsDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Sensor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/StatisticsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/StatisticsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/exceptions/SensorNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/exceptions/SensorNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/networking/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/networking/JSONHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +44,8 @@
       <list>
         <option value="Class" />
         <option value="Interface" />
+        <option value="TestMe with JUnit5 &amp; Mockito" />
+        <option value="UML Class" />
       </list>
     </option>
   </component>
@@ -45,16 +65,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15362932" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -62,7 +89,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11.0.6" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="application.Main" />
@@ -78,29 +105,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Warning" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.warningSystems.Warning" />
+    <configuration name="AllTests" type="JUnit" factoryName="JUnit">
       <module name="application" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="application.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <useClassPathOnly />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <option name="PARAMETERS" value="" />
+      <dir value="$PROJECT_DIR$/tests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest" type="JUnit" factoryName="JUnit">
+      <module name="application" />
+      <useClassPathOnly />
+      <option name="PACKAGE_NAME" value="application" />
+      <option name="MAIN_CLASS_NAME" value="application.MainTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomsControllerTest" type="JUnit" factoryName="JUnit">
+      <module name="application" />
+      <useClassPathOnly />
+      <option name="PACKAGE_NAME" value="application.controllers" />
+      <option name="MAIN_CLASS_NAME" value="application.controllers.RoomsControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsControllerTest" type="JUnit" factoryName="JUnit">
+      <module name="application" />
+      <useClassPathOnly />
+      <option name="PACKAGE_NAME" value="application.controllers" />
+      <option name="MAIN_CLASS_NAME" value="application.controllers.StatisticsControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Warning" />
+      <item itemvalue="JUnit.MainTest" />
+      <item itemvalue="JUnit.RoomsControllerTest" />
+      <item itemvalue="JUnit.AllTests" />
+      <item itemvalue="JUnit.StatisticsControllerTest" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Warning" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -141,6 +200,17 @@
       <workItem from="1589878780437" duration="613000" />
       <workItem from="1589892687150" duration="21507000" />
       <workItem from="1589983253737" duration="17473000" />
+      <workItem from="1590065154070" duration="16930000" />
+      <workItem from="1590667803514" duration="1629000" />
+      <workItem from="1590709105229" duration="29000" />
+      <workItem from="1591788117619" duration="5629000" />
+      <workItem from="1591806345996" duration="44000" />
+      <workItem from="1591872058559" duration="14153000" />
+      <workItem from="1591975079385" duration="2356000" />
+      <workItem from="1591978514523" duration="2450000" />
+      <workItem from="1591987042099" duration="697000" />
+      <workItem from="1591987760694" duration="7199000" />
+      <workItem from="1591994985151" duration="8800000" />
     </task>
     <task id="LOCAL-00001" summary="nothing important">
       <created>1584874098799</created>
@@ -169,18 +239,30 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="489" y="189" key="#Code_Cleanup_Inspections" timestamp="1591918858785">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="489" y="189" key="#Code_Cleanup_Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1591918858785" />
+    <state x="845" y="383" key="#Notifications" timestamp="1591987792915">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="845" y="383" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1591987792915" />
     <state x="552" y="178" key="#Project_Structure" timestamp="1585475008460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1585475008460" />
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589657034370">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591990526913">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589657034370" />
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1589992922010">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591990526913" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1591989950337">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589992922010" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591989950337" />
+    <state x="689" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591989859490">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591989859490" />
     <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585440961670">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -189,26 +271,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="230" width="477" height="578" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585475006728" />
-    <state x="778" y="255" key="FileChooserDialogImpl" timestamp="1589896929406">
+    <state x="606" y="355" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591918859842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="778" y="255" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589896929406" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1590006928877">
+    <state x="606" y="355" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1591918859842" />
+    <state x="565" y="308" key="FileChooserDialogImpl" timestamp="1592000660192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590006928877" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1590006928877">
+    <state x="565" y="308" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592000660192" />
+    <state width="1877" height="56" key="GridCell.Tab.0.bottom" timestamp="1592004961790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590006928877" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1590006928877">
+    <state width="1877" height="56" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961790" />
+    <state width="1877" height="56" key="GridCell.Tab.0.center" timestamp="1592004961789">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590006928877" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1590006928877">
+    <state width="1877" height="56" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961789" />
+    <state width="1877" height="56" key="GridCell.Tab.0.left" timestamp="1592004961788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590006928877" />
+    <state width="1877" height="56" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961788" />
+    <state width="1877" height="56" key="GridCell.Tab.0.right" timestamp="1592004961790">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="56" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961790" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1590006928877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -225,25 +311,41 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590006928877" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1589896930960">
+    <state x="674" y="202" key="PlantUMLSettings" timestamp="1592000662879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589896930960" />
+    <state x="674" y="202" key="PlantUMLSettings/0.0.1920.1040@0.0.1920.1040" timestamp="1592000662879" />
+    <state x="135" y="215" key="SettingsEditor" timestamp="1591999404083">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="135" y="215" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591999404083" />
+    <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1591987213973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591987213973" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585934994250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585934994250" />
-    <state x="416" y="128" width="1115" height="782" key="find.popup" timestamp="1590003773583">
+    <state x="664" y="412" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1591987295028">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="128" width="1115" height="782" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590003773583" />
-    <state x="342" y="140" key="new project wizard" timestamp="1585935058122">
+    <state x="664" y="412" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1591987295028" />
+    <state x="567" y="145" width="1115" height="782" key="find.popup" timestamp="1592003982875">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1585935058122" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1589661191547">
+    <state x="567" y="145" width="1115" height="782" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592003982875" />
+    <state x="342" y="140" key="new project wizard" timestamp="1590709133038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589661191547" />
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1590709133038" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1591893615165">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591893615165" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1592002147275">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592002147275" />
   </component>
 </project>

@@ -1,8 +1,8 @@
 package application.controllers;
 
-import application.networking.JSONHandler;
 import application.Main;
-import application.warningSystems.Warning;
+import application.networking.JSONHandler;
+import application.warningSystem.Warning;
 import com.jfoenix.controls.JFXSlider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,14 +15,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static application.Main.df;
 import static application.Main.serverOn;
 
 public class MainHubController implements Controller {
+    public static int days = 0;
     @FXML
     private JFXSlider slider;
     @FXML
     private Label temp_c;
-
+    @FXML
+    private Label daysHubLabel;
     private double lastGlobalTemp = 21.5;
 
     @FXML
@@ -34,7 +37,7 @@ public class MainHubController implements Controller {
         } catch (Exception e) {
             serverOn = false;
         }
-        String formattedTemp = Main.df.format(lastGlobalTemp);
+        String formattedTemp = df.format(lastGlobalTemp);
         temp_c.setText(formattedTemp + " °C");
         slider.setMajorTickUnit(0.5);
         slider.setMinorTickCount(0);
@@ -43,20 +46,36 @@ public class MainHubController implements Controller {
         slider.setValue(lastGlobalTemp);
         if (!serverOn) slider.setDisable(true);
         slider.setDisable(false);
+        Main.serviceManager.setController(this);
     }
 
     @Override
-    public boolean update() {  //TODO: topeni bylo treba zapnout % dni v roce - bude v update a request data
-        return false;
+    public boolean update() {
+        if (daysHubLabel != null) {
+            String text = String.valueOf(days);
+
+            daysHubLabel.setText("Bylo nutno zapnout\nvytápění " + text + " dny za poslední rok.");
+        }
+        return true;
     }
 
     @Override
-    public void requestData() {
+    public synchronized boolean requestData() {
+        try {
+            String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data/heatingInYear");
 
+            MainHubController.days = Integer.parseInt(daysHeatingInYear);
+            StatisticsController.daysHeated = Integer.parseInt(daysHeatingInYear);
+        } catch (Exception e) {
+            serverOn = false;
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return false;
+        }
+        return true;
     }
 
     @FXML
-    private void changeValue() {
+    private void changeValue() {  //volá se po puštění slideru a posílá novou hodnotu na server
         String formattedText = String.valueOf(slider.getValue());
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + formattedText);
@@ -71,10 +90,11 @@ public class MainHubController implements Controller {
             slider.setDisable(false);
         }
     }
+
     @FXML
-    private void increment(){
+    private void increment() {  // volá tlačítko +
         double newGlobalTemp = lastGlobalTemp + 0.5;
-        if(newGlobalTemp > slider.getMax()) return;
+        if (newGlobalTemp > slider.getMax()) return;
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + newGlobalTemp);
             lastGlobalTemp = newGlobalTemp;
@@ -87,10 +107,11 @@ public class MainHubController implements Controller {
             slider.setDisable(false);
         }
     }
+
     @FXML
-    private void decrement(){
+    private void decrement() { // tlačítko -
         double newGlobalTemp = lastGlobalTemp - 0.5;
-        if(newGlobalTemp < slider.getMin()) return;
+        if (newGlobalTemp < slider.getMin()) return;
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + newGlobalTemp);
             lastGlobalTemp = newGlobalTemp;

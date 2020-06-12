@@ -4,5 +4,5 @@ public interface Controller {
 
     boolean update();
 
-    void requestData();
+    boolean requestData();
 }
