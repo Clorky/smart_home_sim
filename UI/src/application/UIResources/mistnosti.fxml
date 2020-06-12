@@ -11,139 +11,169 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RoomsController">
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="573.0" prefWidth="189.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="30.0" prefWidth="219.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="210.0" text="Místnosti" textAlignment="CENTER" textFill="#1c00b9">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="754.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.controllers.RoomsController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="573.0" prefWidth="189.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="30.0" prefWidth="219.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="210.0" text="Místnosti" textAlignment="CENTER" textFill="#1c00b9">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <ListView fx:id="listView" onMouseClicked="#handleMouseClick" prefHeight="482.0" prefWidth="0.0">
+                    <VBox.margin>
+                        <Insets left="1.0" right="1.0" />
+                    </VBox.margin>
+                </ListView>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="16.0" prefHeight="26.0" prefWidth="128.0" text="Přidání místnosti" textAlignment="CENTER" textFill="#1c00b9">
                      <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <ListView fx:id="listView" onMouseClicked="#handleMouseClick" prefHeight="482.0" prefWidth="0.0">
-               <VBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </VBox.margin></ListView>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="19.0" prefHeight="19.0" prefWidth="102.0" text="Název místnosti" textAlignment="CENTER" textFill="#1c00b9" />
-               </children>
-            </Pane>
-            <TextField fx:id="textAddTextField" alignment="CENTER" promptText="Zadej název místnosti" />
-            <Pane prefHeight="200.0" prefWidth="200.0" />
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <bottom>
-      <HBox fx:id="toasterBox" fillHeight="false" BorderPane.alignment="CENTER">
-         <children>
-            <VBox>
-               <children>
-                  <Button id="addButtonRoom" mnemonicParsing="false" onAction="#addRoom" text="Přidat místnost">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Pane prefHeight="12.0" prefWidth="102.0" />
-                  <Button id="removeButtonRoom" mnemonicParsing="false" onAction="#removeRoom" text="Odebrat místnost" />
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <Pane prefHeight="25.0" prefWidth="290.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin></Pane>
-            <Button id="goBack" fx:id="statisticsButtonInRooms" alignment="CENTER" mnemonicParsing="false" onAction="#changeScreenStatistics" text="Statistiky">
-               <HBox.margin>
-                  <Insets left="150.0" />
-               </HBox.margin></Button>
-            <Button id="goBack" fx:id="goBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Zpět">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
-   <padding>
-      <Insets left="10.0" />
-   </padding>
-   <right>
-      <VBox alignment="CENTER" prefHeight="498.0" prefWidth="561.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane fx:id="sensorPaneId" prefHeight="549.0" prefWidth="555.0" visible="false">
-               <children>
-                  <VBox alignment="TOP_CENTER" layoutX="114.0" layoutY="1.0" prefHeight="498.0" prefWidth="327.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="34.0" prefWidth="327.0">
-                           <children>
-                              <Label fx:id="sensorInfoDesc" prefHeight="41.0" prefWidth="145.0" text="Informace o senzoru" textAlignment="CENTER" textFill="#1c00b9">
+                        <Font size="16.0" />
+                     </font></Label>
+                    </children>
+                </Pane>
+                <TextField fx:id="textAddTextField" alignment="CENTER" promptText="Zadej název místnosti" />
+                <Pane prefHeight="200.0" prefWidth="200.0" />
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <bottom>
+        <HBox fx:id="toasterBox" fillHeight="false" BorderPane.alignment="CENTER">
+            <children>
+                <VBox>
+                    <children>
+                        <Button id="addButtonRoom" mnemonicParsing="false" onAction="#addRoom" text="Přidat místnost">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Pane prefHeight="12.0" prefWidth="102.0" />
+                        <Button id="removeButtonRoom" mnemonicParsing="false" onAction="#removeRoom" text="Odebrat místnost" />
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </VBox>
+                <Pane prefHeight="25.0" prefWidth="290.0">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Pane>
+                <Button id="goBack" fx:id="statisticsButtonInRooms" alignment="CENTER" mnemonicParsing="false" onAction="#changeScreenStatistics" text="Statistiky">
+                    <HBox.margin>
+                        <Insets left="150.0" />
+                    </HBox.margin>
+                </Button>
+                <Button id="goBack" fx:id="goBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Zpět">
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" />
+            </BorderPane.margin>
+        </HBox>
+    </bottom>
+    <padding>
+        <Insets left="10.0" />
+    </padding>
+    <right>
+        <VBox alignment="CENTER" prefHeight="498.0" prefWidth="561.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane fx:id="sensorPaneId" prefHeight="549.0" prefWidth="555.0" visible="false">
+                    <children>
+                        <VBox alignment="TOP_CENTER" layoutX="114.0" layoutY="1.0" prefHeight="498.0" prefWidth="327.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="34.0" prefWidth="327.0">
+                                    <children>
+                                        <Label fx:id="sensorInfoDesc" prefHeight="34.0" prefWidth="166.0" text="Informace o senzoru" textAlignment="CENTER" textFill="#1c00b9">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
+                                    <children>
+                                        <Label fx:id="nameDesc" prefHeight="20.0" prefWidth="93.0" text="Název senzoru" textFill="#1c00b9">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
+                                    <children>
+                                        <Label fx:id="sensorNameLabel" alignment="CENTER" text="- empty -" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
+                                    <children>
+                                        <Label fx:id="tempDesc" text="Aktuální teplota" textFill="#1c00b9">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
+                                    <children>
+                                        <Label fx:id="temperatureLabel" alignment="CENTER" text="- empty -" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
+                                    <children>
+                                        <Label fx:id="consumptionDesc" text="Aktuální spotřeba elektřiny" textFill="#1c00b9">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
+                                    <children>
+                                        <Label fx:id="powerConsumptionAtmLabel" alignment="CENTER" text="- empty -" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
+                                    <children>
+                                        <Label fx:id="lightsDesc" text="Stav svícení" textFill="#1c00b9">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
+                                    <children>
+                                        <Label fx:id="lightsOnTimeLabel" alignment="CENTER" text="- empty -" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                                    </children>
+                                </HBox>
+                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
-                           <children>
-                              <Label fx:id="nameDesc" prefHeight="17.0" prefWidth="78.0" text="Název senzoru" textFill="#1c00b9" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
-                           <children>
-                              <Label fx:id="sensorNameLabel" alignment="CENTER" text="senzorName" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
-                           <children>
-                              <Label fx:id="tempDesc" text="Aktuální teplota" textFill="#1c00b9" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
-                           <children>
-                              <Label fx:id="temperatureLabel" alignment="CENTER" text="temperature" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
-                           <children>
-                              <Label fx:id="consumptionDesc" text="Aktuální spotřeba elektřiny" textFill="#1c00b9" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
-                           <children>
-                              <Label fx:id="powerConsumptionAtmLabel" alignment="CENTER" text="powerConsumptionAtm" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0">
-                           <children>
-                              <Label fx:id="lightsDesc" text="Doba svícení" textFill="#1c00b9" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="327.0">
-                           <children>
-                              <Label fx:id="lightsOnTimeLabel" alignment="CENTER" text="lightsOnTime" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-         </children>
-      </VBox>
-   </right>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </right>
 </BorderPane>

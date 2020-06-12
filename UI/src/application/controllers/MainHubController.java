@@ -1,8 +1,8 @@
 package application.controllers;
 
-import application.networking.JSONHandler;
 import application.Main;
-import application.warningSystems.Warning;
+import application.networking.JSONHandler;
+import application.warningSystem.Warning;
 import com.jfoenix.controls.JFXSlider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,30 +12,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import static application.Main.df;
 import static application.Main.serverOn;
 
 public class MainHubController implements Controller {
+    public static int days = 0;
     @FXML
     private JFXSlider slider;
     @FXML
     private Label temp_c;
     @FXML
     private Label daysHubLabel;
-
     private double lastGlobalTemp = 21.5;
-
-    double days = 0;
-    private boolean dataRequested = false;
 
     @FXML
     private synchronized void initialize() {
@@ -59,36 +50,32 @@ public class MainHubController implements Controller {
     }
 
     @Override
-    public boolean update() {  //TODO: topeni bylo treba zapnout % dni v roce - bude v update a request data
+    public boolean update() {
+        if (daysHubLabel != null) {
+            String text = String.valueOf(days);
 
-            String text = df.format(days);
-            if (days < 1) {
-                text = "< 1";
-            }
             daysHubLabel.setText("Bylo nutno zapnout\nvytápění " + text + " dny za poslední rok.");
-
+        }
         return true;
     }
 
     @Override
-    public synchronized void requestData() {
-        System.out.println(dataRequested);
-        if(!dataRequested) {
-            System.out.println("called in");
-            try {
-                String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data/heatingInYear");
+    public synchronized boolean requestData() {
+        try {
+            String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data/heatingInYear");
 
-                days = Double.parseDouble(daysHeatingInYear);
-            } catch (Exception e) {
-                serverOn = false;
-                new Warning(Warning.WarningType.SERVER_DOWN);
-            }
-            dataRequested = true;
+            MainHubController.days = Integer.parseInt(daysHeatingInYear);
+            StatisticsController.daysHeated = Integer.parseInt(daysHeatingInYear);
+        } catch (Exception e) {
+            serverOn = false;
+            new Warning(Warning.WarningType.SERVER_DOWN);
+            return false;
         }
+        return true;
     }
 
     @FXML
-    private void changeValue() {
+    private void changeValue() {  //volá se po puštění slideru a posílá novou hodnotu na server
         String formattedText = String.valueOf(slider.getValue());
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + formattedText);
@@ -103,10 +90,11 @@ public class MainHubController implements Controller {
             slider.setDisable(false);
         }
     }
+
     @FXML
-    private void increment(){
+    private void increment() {  // volá tlačítko +
         double newGlobalTemp = lastGlobalTemp + 0.5;
-        if(newGlobalTemp > slider.getMax()) return;
+        if (newGlobalTemp > slider.getMax()) return;
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + newGlobalTemp);
             lastGlobalTemp = newGlobalTemp;
@@ -119,10 +107,11 @@ public class MainHubController implements Controller {
             slider.setDisable(false);
         }
     }
+
     @FXML
-    private void decrement(){
+    private void decrement() { // tlačítko -
         double newGlobalTemp = lastGlobalTemp - 0.5;
-        if(newGlobalTemp < slider.getMin()) return;
+        if (newGlobalTemp < slider.getMin()) return;
         try {
             JSONHandler.get("http://localhost:8080/sensors/all/updateRequestedTemperature/" + newGlobalTemp);
             lastGlobalTemp = newGlobalTemp;

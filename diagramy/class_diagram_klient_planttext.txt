@@ -1,0 +1,140 @@
+@startuml
+class Task{
+    #{abstract}call()
+}
+
+class Application{
+    +{abstract}start()
+}
+enum WarningType{
+}
+
+package application <<Rectangle>>{
+
+class Main extends Application{
+    +{static} serverOn : boolean
+    +{static} running : boolean
+    +{static} serviceManager : ServiceManager
+    +{static} df : DecimalFormat
+    +{static} dfW : DecimalFormat
+
+    +{static}main(args : String[]) : void
+    +{static}checkServerConnection() : boolean
+    +start(primaryStage : Stage) : void <<override>>
+
+}
+class ServiceManager extends Task{
+    - removalInProcess : boolean
+    - controller : Controller
+    - SLEEP_TIME : int
+    
+    #call() : Object <<override>>
+    +setController(controller : Controller) : void
+
+}
+}
+
+package application.controllers <<Rectangle>>{
+
+interface Controller{
+    update() : boolean
+    requestData() : boolean
+}
+
+class MainHubController implements Controller{
+    
+    + {static} days : int
+    - slider : JFXSlider <<fxml>>
+    - temp_c : Label <<fxml>>
+    - daysHubLabel : Label <<fxml>>
+    - lastGlobalTemp : double
+    
+    - initialize() : void <<synchronized>>
+    + update() : boolean <<override>>
+    + requestData() : boolean <<override>> <<synchronized>>
+    - changeValue() : void <<fxml>>
+    - increment() : void <<fxml>>
+    - decrement() : void <<fxml>>
+    + changeScreenRooms(evt : ActionEvent) : void
+    + changeScreenStatistics(evt : ActionEvent) : void
+}
+
+class RoomsController implements Controller{
+
+    +{static} roomsToDelete : List<String>
+    +{static} removingInProcess : boolean
+    - sensorPaneId : Pane <<fxml>>
+    - listView : ListView<String> <<fxml>>
+    - textAddTextField : TextField <<fxml>>
+    - sensorNameLabel : Label <<fxml>>
+    - lightsOnTimeLabel : Label <<fxml>>
+    - temperatureLabel : Label <<fxml>>
+    - powerConsumptionAtmLabel : Label <<fxml>>
+    - usedRoomNames : List<String>
+    - currentlyChosenRoomName : String
+    - electricityUsage : double
+    - lightTime : boolean
+    - currentTemperature : double
+
+    + handleMouseClick(arg0 : MouseEvent) : void <<fxml>>
+    - initialize() : void <<fxml>> <<synchronized>>
+    + update() : boolean
+    + requestData() : boolean <<synchronized>>
+    + addRoom() : void <<synchronized>>
+    + removeRoom() : void
+    + changeScreenStatistics(evt : ActionEvent) : void
+    + goBack(evt : ActionEvent) : void
+}
+class StatisticsController implements Controller{
+    + {static} MONTHS : String[]
+    + {static} roomNamesIDs : Map<String, Integer>
+    + {static} threadFinished : boolean
+    + {static} daysHeated : int
+    + {static} lightData : Map<String, Map<Integer, Integer>>
+    + {static} totalEnergyConsumption : Map<Integer, Double>
+    - roomsListView : ListView<String> <<fxml>>
+    - monthsListView : ListView<String> <<fxml>>
+    - numDaysHeaterOnLabel : Label <<fxml>>
+    - numAverageTimeLightsOn : Label <<fxml>>
+    - numFullPowerConsInKwh : Label <<fxml>>
+    - currentlyChosenMonth : String
+    - currentlyChosenMonthNumber : int
+    - currentlyChosenRoomName : String
+    - updated : boolean
+    
+    - initialize() : void <<fxml>> <<synchronized>>
+    + update() : boolean <<override>>
+    + requestData() : boolean <<override>>
+    + changeScreenRooms(evt : ActionEvent) : void
+    + goBack(evt : ActionEvent) : void
+}
+}
+package application.warningSystem <<Rectangle>>{
+class Warning{
+    + {static} labelProperty : StringProperty
+    - counter : int
+    - appOffButton : ButtonType
+    - alert : Alert
+    - window : Stage
+    - label : Label
+    +.ctor(warningType : WarningType)
+    - initServerDown() : void <<synchronized>>
+}
+}
+
+package application.networking{
+class JSONHandler{
+    +{static} get(urlToRead : String) : String
+    +{static} post(urlPath : String, body: String) : void
+}
+}
+
+Warning +-- WarningType
+application.warningSystem --- application.controllers
+ServiceManager - Main
+application.networking -- application.controllers
+application -- application.networking
+Main -- MainHubController
+
+
+@enduml

@@ -1,38 +1,29 @@
-package application.warningSystems;
+package application.warningSystem;
 
 import application.Main;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.Optional;
 
 import static application.Main.checkServerConnection;
 
-public class Warning { //TODO: zkontrolovat vsechny warningy jestli jsou ok (to co se po nich spusti)
+public class Warning {
 
+    public static StringProperty labelProperty = new SimpleStringProperty();
+    private int counter = 0;
+    private ButtonType appOffButton = new ButtonType("Vypnout aplikaci", ButtonBar.ButtonData.LEFT);
     private Alert alert;
     private Stage window;
     private Label label;
-    int counter = 0;
-    ButtonType appOffButton = new ButtonType("Vypnout aplikaci", ButtonBar.ButtonData.LEFT);
-
-    public static StringProperty labelProperty = new SimpleStringProperty();
 
     public Warning(WarningType warningType) {
         if (warningType == WarningType.SERVER_DOWN) {
@@ -58,8 +49,11 @@ public class Warning { //TODO: zkontrolovat vsechny warningy jestli jsou ok (to 
             Optional a = alert.showAndWait();
             if (a.isPresent() && a.get() == appOffButton) {
                 Main.running = false;
-                Platform.runLater(() -> {
-                    Platform.exit();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.exit();
+                    }
                 });
             }
 

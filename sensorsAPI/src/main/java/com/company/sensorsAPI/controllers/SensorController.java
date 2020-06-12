@@ -28,19 +28,16 @@ public class SensorController {
     Double getGlobalTemp() {
         Double defaultTemp = 21.5;
         Iterable<Sensor> sensors = sensorRepository.findAll();
-        if(sensors.spliterator().getExactSizeIfKnown() == 0) return defaultTemp;
+        if (sensors.spliterator().getExactSizeIfKnown() == 0) return defaultTemp;
         for (Sensor sensor : sensors) {
             return sensor.getRequestedTemp();
-            }
-        return defaultTemp;
         }
+        return defaultTemp;
+    }
 
-    @PostMapping(path = "/add") // Map ONLY POST Requests
+    @PostMapping(path = "/add")
     public @ResponseBody
     Sensor addNewSensor(@RequestBody Sensor sensor) {
-
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
 
         return sensorRepository.save(sensor);
     }
@@ -51,11 +48,11 @@ public class SensorController {
         Sensor sensorRet = null;
         Iterable<Sensor> sensors = sensorRepository.findAll();
         for (Sensor sensor : sensors) {
-            if(sensor.getSensorName().equals(sensor_name)){
+            if (sensor.getSensorName().equals(sensor_name)) {
                 sensorRet = sensor;
             }
         }
-        if(sensorRet == null) throw new SensorNotFoundException(sensor_name);
+        if (sensorRet == null) throw new SensorNotFoundException(sensor_name);
         return sensorRet;
     }
 
@@ -66,10 +63,11 @@ public class SensorController {
         return sensorRepository.findById(id)
                 .map(sensor -> {
                     sensor.setTemperature(updatedSensor.getTemperature());
-                    sensor.setLightsOnNumberInSeconds(updatedSensor.getLightsOnNumberInSeconds());
+                    sensor.setlightsOn(updatedSensor.getlightsOn());
                     sensor.setCurrentConsumption(updatedSensor.getCurrentConsumption());
                     sensor.setRequestedTemp(updatedSensor.getRequestedTemp());
                     sensor.setHeated(updatedSensor.isHeated());
+
                     return sensorRepository.save(sensor);
                 })
                 .orElseGet(() -> {
@@ -81,11 +79,11 @@ public class SensorController {
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Sensor> getAllSensors() {
-        // This returns a JSON or XML with the users
         Iterable<Sensor> sensors = sensorRepository.findAll();
         for (Sensor s : sensors) {
-            statisticsDataRepository.save(new StatisticsData(s.getSensorName(), s.getTemperature(),
-                    s.getCurrentConsumption(), s.getLightsOnNumberInSeconds(), s.isHeated(), s));
+            StatisticsData data = new StatisticsData(s.getSensorName(), s.getTemperature(),
+                    s.getCurrentConsumption(), s.getlightsOn(), s.isHeated(), s);
+            statisticsDataRepository.save(data);
         }
         return sensors;
     }
@@ -101,5 +99,5 @@ public class SensorController {
         }
         sensorRepository.saveAll(sensorsToUpdate);
 
-        }
+    }
 }

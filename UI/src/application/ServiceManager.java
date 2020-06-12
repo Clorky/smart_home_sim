@@ -7,26 +7,25 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ServiceManager extends Task {
 
     private boolean removalInProcess;
     private Controller controller = null;
 
-    private int sleepTime = 1000;
+    private final int SLEEP_TIME = 1000;
 
     @Override
     protected Object call() throws Exception {
+
         while (Main.running || removalInProcess) {
             synchronized (this) {
 
-                Thread.sleep(sleepTime);
+                Thread.sleep(SLEEP_TIME);
 
                 if (!Main.serverOn) continue;
 
-                if(controller != null) {
+                if (controller != null) {
                     Platform.runLater(() -> {
                         controller.requestData();
                         controller.update();
@@ -50,8 +49,6 @@ public class ServiceManager extends Task {
                     removalInProcess = false;
                 }
 
-                System.out.println("working");
-
             }
 
         }
@@ -59,6 +56,7 @@ public class ServiceManager extends Task {
     }
 
     public void setController(Controller controller) {
+
         this.controller = controller;
     }
 }
