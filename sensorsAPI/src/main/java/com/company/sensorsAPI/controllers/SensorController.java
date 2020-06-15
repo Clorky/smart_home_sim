@@ -3,6 +3,7 @@ package com.company.sensorsAPI.controllers;
 import com.company.sensorsAPI.entities.Sensor;
 import com.company.sensorsAPI.entities.StatisticsData;
 import com.company.sensorsAPI.exceptions.SensorNotFoundException;
+import com.company.sensorsAPI.networking.JSONHandler;
 import com.company.sensorsAPI.repositories.SensorRepository;
 import com.company.sensorsAPI.repositories.StatisticsDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,10 +81,30 @@ public class SensorController {
     public @ResponseBody
     Iterable<Sensor> getAllSensors() {
         Iterable<Sensor> sensors = sensorRepository.findAll();
+
+        if(!StatisticsDataCacheController.initialized) {
+            try {
+                JSONHandler.get("http://localhost:8080/statistics_data_cache/init");
+                System.out.println("initialized");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         for (Sensor s : sensors) {
             StatisticsData data = new StatisticsData(s.getSensorName(), s.getTemperature(),
                     s.getCurrentConsumption(), s.getlightsOn(), s.isHeated(), s);
-            statisticsDataRepository.save(data);
+
+            StatisticsData sd = statisticsDataRepository.save(data);
+
+            StatisticsDataCacheController.currentStatisticsData = sd;
+            try {
+                JSONHandler.get("http://localhost:8080/statistics_data_cache/init");
+                System.out.println("initialized");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
         return sensors;
     }

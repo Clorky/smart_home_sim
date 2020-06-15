@@ -1,5 +1,7 @@
 package com.company.sensorsAPI.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,8 @@ public class Sensor {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensor", orphanRemoval = true)
     List<StatisticsData> statistics = new ArrayList<StatisticsData>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensor", orphanRemoval = true)
+    List<StatisticsDataCache> cache = new ArrayList<StatisticsDataCache>();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sensor_id")

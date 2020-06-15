@@ -1,5 +1,6 @@
 package com.company.sensorsAPI.entities;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class StatisticsData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer statistics_id;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "sensor_fk")
+    @JoinColumn(name = "sensor_id")
     private Sensor sensor;
     private String sensorName;
     private double temperature;

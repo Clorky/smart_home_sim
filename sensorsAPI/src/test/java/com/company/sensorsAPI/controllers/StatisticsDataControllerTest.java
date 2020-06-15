@@ -17,6 +17,8 @@ class StatisticsDataControllerTest {
     @Mock
     StatisticsDataRepository statisticsDataRepository;
     @Mock
+    StatisticsDataCacheController statisticsDataCacheRepository;
+    @Mock
     SensorRepository sensorRepository;
     @Mock
     RoomRepository roomRepository;
@@ -34,6 +36,6 @@ class StatisticsDataControllerTest {
 
     @Test
     void testInit() {
-        statisticsDataController.init();
+        statisticsDataCacheRepository.initialize();
     }
 }

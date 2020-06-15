@@ -2,34 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="088ab251-dc08-4588-8b1b-9f1174853576" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/ServiceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/UIResources/mainHub.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/mainHub.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/UIResources/mistnosti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/mistnosti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/UIResources/slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/slider.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/UIResources/statistiky.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/UIResources/statistiky.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/controllers/MainHubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/MainHubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/controllers/RoomsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/RoomsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/controllers/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/controllers/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/networking/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/networking/JSONHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/warningSystems/Warning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/warningSystem/Warning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../diagramy/Obrazky/epc_pridani_mistnosti.png" beforeDir="false" afterPath="$PROJECT_DIR$/../diagramy/Obrazky/epc_pridani_mistnosti.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../diagramy/epc_pridani_mistnosti.adf" beforeDir="false" afterPath="$PROJECT_DIR$/../diagramy/epc_pridani_mistnosti.adf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/sensorsAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/SensorSimulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/SensorsApiApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/SensorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/SensorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/StatisticsDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/controllers/StatisticsDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/Sensor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/StatisticsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/entities/StatisticsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/exceptions/SensorNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/exceptions/SensorNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/networking/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/networking/JSONHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/SensorSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/main/java/com/company/sensorsAPI/simulation/SensorSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sensorsAPI/src/test/java/com/company/sensorsAPI/controllers/StatisticsDataControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sensorsAPI/src/test/java/com/company/sensorsAPI/controllers/StatisticsDataControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +59,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sensorsAPI" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -211,6 +197,10 @@
       <workItem from="1591987042099" duration="697000" />
       <workItem from="1591987760694" duration="7199000" />
       <workItem from="1591994985151" duration="8800000" />
+      <workItem from="1592078017620" duration="1433000" />
+      <workItem from="1592086646337" duration="2037000" />
+      <workItem from="1592166988038" duration="235000" />
+      <workItem from="1592203103451" duration="20441000" />
     </task>
     <task id="LOCAL-00001" summary="nothing important">
       <created>1584874098799</created>
@@ -271,30 +261,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="230" width="477" height="578" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585475006728" />
+    <state x="560" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1592086659739">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="560" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592086659739" />
     <state x="606" y="355" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591918859842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="606" y="355" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1591918859842" />
-    <state x="565" y="308" key="FileChooserDialogImpl" timestamp="1592000660192">
+    <state x="565" y="308" key="FileChooserDialogImpl" timestamp="1592239165954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="565" y="308" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592000660192" />
-    <state width="1877" height="56" key="GridCell.Tab.0.bottom" timestamp="1592004961790">
+    <state x="565" y="308" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592239165954" />
+    <state width="1877" height="143" key="GridCell.Tab.0.bottom" timestamp="1592240621858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="56" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961790" />
-    <state width="1877" height="56" key="GridCell.Tab.0.center" timestamp="1592004961789">
+    <state width="1877" height="143" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592240621858" />
+    <state width="1877" height="143" key="GridCell.Tab.0.center" timestamp="1592240621858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="56" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961789" />
-    <state width="1877" height="56" key="GridCell.Tab.0.left" timestamp="1592004961788">
+    <state width="1877" height="143" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592240621858" />
+    <state width="1877" height="143" key="GridCell.Tab.0.left" timestamp="1592240621858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="56" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961788" />
-    <state width="1877" height="56" key="GridCell.Tab.0.right" timestamp="1592004961790">
+    <state width="1877" height="143" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592240621858" />
+    <state width="1877" height="143" key="GridCell.Tab.0.right" timestamp="1592240621858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="56" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592004961790" />
+    <state width="1877" height="143" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592240621858" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1590006928877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -331,10 +325,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="412" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1591987295028" />
-    <state x="567" y="145" width="1115" height="782" key="find.popup" timestamp="1592003982875">
+    <state x="567" y="145" width="1115" height="782" key="find.popup" timestamp="1592231894002">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="567" y="145" width="1115" height="782" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592003982875" />
+    <state x="567" y="145" width="1115" height="782" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592231894002" />
     <state x="342" y="140" key="new project wizard" timestamp="1590709133038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

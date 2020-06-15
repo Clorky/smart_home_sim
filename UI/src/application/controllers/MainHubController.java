@@ -62,8 +62,8 @@ public class MainHubController implements Controller {
     @Override
     public synchronized boolean requestData() {
         try {
-            String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data/heatingInYear");
-
+            String daysHeatingInYear = JSONHandler.get("http://localhost:8080/statistics_data_cache/heatingInYear");
+            System.out.println(daysHeatingInYear.toString());
             MainHubController.days = Integer.parseInt(daysHeatingInYear);
             StatisticsController.daysHeated = Integer.parseInt(daysHeatingInYear);
         } catch (Exception e) {

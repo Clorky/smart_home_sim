@@ -46,15 +46,15 @@ public class DataGenerator {
         long timeNow = System.currentTimeMillis();
 
         Timestamp startTimestamp = new Timestamp(2020 - 1900, 0, 1, 12, 0, 0, 0);
-        Timestamp endTimestamp = new Timestamp(2020 - 1900, 12, 30, 12, 0, 0, 0);
+        Timestamp endTimestamp = new Timestamp(2020 - 1900, 12, 31, 12, 0, 0, 0);
         Timestamp currentTimestamp = startTimestamp;
 
         Random random = new Random();
 
-        Sensor sensor1 = sensorRepository.findById(4).get();
-        Sensor sensor2 = sensorRepository.findById(2).get();
-        Sensor sensor3 = sensorRepository.findById(6).get();
-        Sensor sensor4 = sensorRepository.findById(8).get();
+        Sensor sensor1 = sensorRepository.findById(2).get();
+        Sensor sensor2 = sensorRepository.findById(4).get();
+        Sensor sensor3 = sensorRepository.findById(8).get();
+        Sensor sensor4 = sensorRepository.findById(6).get();
         Sensor sensor5 = sensorRepository.findById(10).get();
 
 
@@ -79,15 +79,15 @@ public class DataGenerator {
 
 
             StatisticsData sd1 = new StatisticsData("Kuchyne_sensor", random.nextInt((22 - 18) + 1) + 18, currentTimestamp,
-                    random.nextInt((25 - 15) + 1) + 15, booleans7[counter], booleans6[counter], sensor1);
+                    random.nextInt((30 - 20) + 1) + 20, booleans7[counter], booleans6[counter], sensor1);
             StatisticsData sd2 = new StatisticsData("Obyvak_sensor", random.nextInt((22 - 18) + 1) + 18, currentTimestamp,
-                    random.nextInt((25 - 15) + 1) + 15, booleans8[counter], booleans7[counter], sensor2);
+                    random.nextInt((35 - 25) + 1) + 25, booleans8[counter], booleans7[counter], sensor2);
             StatisticsData sd3 = new StatisticsData("Svetnice_sensor", random.nextInt((22 - 18) + 1) + 18, currentTimestamp,
-                    random.nextInt((25 - 15) + 1) + 15, booleans4[counter], booleans1[counter], sensor3);
+                    random.nextInt((20 - 15) + 1) + 15, booleans4[counter], booleans1[counter], sensor3);
             StatisticsData sd4 = new StatisticsData("Koupelna_sensor", random.nextInt((22 - 18) + 1) + 18, currentTimestamp,
-                    random.nextInt((25 - 15) + 1) + 15, booleans5[counter], booleans4[counter], sensor4);
+                    random.nextInt((15 - 5) + 1) + 5, booleans5[counter], booleans4[counter], sensor4);
             StatisticsData sd5 = new StatisticsData("Loznice_sensor", random.nextInt((22 - 18) + 1) + 18, currentTimestamp,
-                    random.nextInt((25 - 15) + 1) + 15, booleans3[counter], booleans7[counter], sensor5);
+                    random.nextInt((15 - 8) + 1) + 8, booleans3[counter], booleans7[counter], sensor5);
             statisticsDataRepository.save(sd1);
             statisticsDataRepository.save(sd2);
             statisticsDataRepository.save(sd3);
