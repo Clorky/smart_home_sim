@@ -131,7 +131,7 @@ public class StatisticsController implements Controller {
         }
 
         try {
-            String lightDataJson = JSONHandler.get("http://localhost:8080/statistics_data/lightTimeInMonths");
+            String lightDataJson = JSONHandler.get("http://localhost:8080/statistics_data_cache/lightTimeInMonths");
             org.json.JSONObject lightData = new org.json.JSONObject(lightDataJson);
             Map<String, Map<Integer, Integer>> lightMap = new HashMap<>();
 
@@ -139,6 +139,7 @@ public class StatisticsController implements Controller {
                 Map<Integer, Integer> monthsLight = new HashMap<>();
 
                 org.json.JSONObject months = new org.json.JSONObject(lightData.get(s).toString());
+                System.out.println(months.toString());
                 for (int i = 0; i < StatisticsController.MONTHS.length; i++) {
 
                     monthsLight.put(i, Integer.valueOf(months.get(String.valueOf(i)).toString()));
@@ -149,7 +150,7 @@ public class StatisticsController implements Controller {
             StatisticsController.lightData = lightMap;
 
 
-            String energyConsumptionDataJson = JSONHandler.get("http://localhost:8080/statistics_data/totalConsumption");
+            String energyConsumptionDataJson = JSONHandler.get("http://localhost:8080/statistics_data_cache/totalConsumption");
             org.json.JSONObject consumptionData = new org.json.JSONObject(energyConsumptionDataJson);
 
             Map<Integer, Double> consumptionMap = new HashMap<>();

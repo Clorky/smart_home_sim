@@ -75,6 +75,8 @@ class RoomsController implements Controller{
     - electricityUsage : double
     - lightTime : boolean
     - currentTemperature : double
+    - sensor : Sensor
+    - room : Room
 
     + handleMouseClick(arg0 : MouseEvent) : void <<fxml>>
     - initialize() : void <<fxml>> <<synchronized>>
@@ -101,6 +103,7 @@ class StatisticsController implements Controller{
     - currentlyChosenMonthNumber : int
     - currentlyChosenRoomName : String
     - updated : boolean
+    - statistics : StatisticsData
     
     - initialize() : void <<fxml>> <<synchronized>>
     + update() : boolean <<override>>
@@ -129,12 +132,20 @@ class JSONHandler{
 }
 }
 
+package sensorsApi <<Cloud>>{
+class SensorController{}
+class StatisticsDataController{}
+class RoomController{}
+class SensorsApiApplication{}
+}
+
 Warning +-- WarningType
 application.warningSystem --- application.controllers
 ServiceManager - Main
 application.networking -- application.controllers
 application -- application.networking
 Main -- MainHubController
+application -- sensorsApi
 
 
 @enduml

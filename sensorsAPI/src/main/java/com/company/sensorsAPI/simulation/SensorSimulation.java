@@ -1,5 +1,6 @@
 package com.company.sensorsAPI.simulation;
 
+import com.company.sensorsAPI.controllers.StatisticsDataCacheController;
 import com.company.sensorsAPI.controllers.StatisticsDataController;
 import com.company.sensorsAPI.entities.Sensor;
 import com.company.sensorsAPI.listeners.MyListener;
@@ -7,7 +8,6 @@ import com.company.sensorsAPI.networking.JSONHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -35,6 +35,7 @@ public class SensorSimulation implements Runnable {
     public void run() {
 
         while (true) {
+
             while (MyListener.running) {
 
                 if (databaseFillFlag) {
@@ -46,14 +47,9 @@ public class SensorSimulation implements Runnable {
                     databaseFillFlag = false;
                 }
 
-                if (!StatisticsDataController.initialized || timer >= 60) { // uloží do cache hodnoty každou hodinu
-                    try {
-                        JSONHandler.get("http://localhost:8080/statistics_data/init");
-                        StatisticsDataController.initialized = true;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    timer = 0;
+                if(!StatisticsDataCacheController.initialized) {
+
+
                 }
 
                 synchronized (this) {

@@ -2,8 +2,10 @@ package com.company.sensorsAPI.controllers;
 
 import com.company.sensorsAPI.entities.Room;
 import com.company.sensorsAPI.entities.Sensor;
+import com.company.sensorsAPI.entities.StatisticsDataCache;
 import com.company.sensorsAPI.repositories.RoomRepository;
 import com.company.sensorsAPI.repositories.SensorRepository;
+import com.company.sensorsAPI.repositories.StatisticsDataCacheRepository;
 import com.company.sensorsAPI.simulation.SensorSimulation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +18,16 @@ public class RoomController {
     private RoomRepository roomRepository;
     @Autowired
     private SensorRepository sensorRepository;
+    @Autowired
+    private StatisticsDataCacheRepository statisticsDataCacheRepository;
 
     @PostMapping(path = "/add")
     public @ResponseBody
     void addNewRoom(@RequestBody Room room) {
         Room room1 = new Room(room.getName());
         roomRepository.save(room1);
-        Sensor sensor = new Sensor(10, 0, false, room.getName() + "_sensor", false, 21.5, room1);
-        StatisticsDataController.initNewRoom(room);
+        Sensor sensor = new Sensor(18, 0, false, room.getName() + "_sensor", false, 21.5, room1);
+        StatisticsDataCacheController.initNewRoom(room);
         sensorRepository.save(sensor);
     }
 
@@ -33,6 +37,12 @@ public class RoomController {
         if (SensorSimulation.deleteFlag) {
             Iterable<Room> rooms = roomRepository.findAll();
             Iterable<Sensor> sensors = sensorRepository.findAll();
+            Iterable<StatisticsDataCache> cache = statisticsDataCacheRepository.findAll();
+
+            for (StatisticsDataCache statisticsDataCache : cache) {
+                if(statisticsDataCache.getRoomName().equals(room.getName())) statisticsDataCacheRepository.delete(statisticsDataCache);
+            }
+
             for (Room room1 : rooms) {
                 if (room.getName().equals(room1.getName())) {
                     for (Sensor sensor : sensors) {
@@ -41,7 +51,7 @@ public class RoomController {
                         }
                     }
                     roomRepository.delete(room1);
-                    StatisticsDataController.lightData.remove(room1.getName());
+                    StatisticsDataCacheController.lightData.remove(room1.getName());
                     return true;
                 }
             }
